@@ -3,6 +3,7 @@ import { ShoppingCart, Phone } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/gasach-logo.png';
 
 const Header = () => {
   const location = useLocation();
@@ -21,11 +22,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="text-3xl font-bold">
-              <span className="text-primary">Ga</span>
-              <span className="text-secondary">sach</span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Gasach Logo" className="h-12 md:h-14" />
           </Link>
 
           <nav className="hidden md:flex items-center space-x-1">
@@ -45,10 +43,10 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <a href="tel:0123456789">
+            <a href="tel:0899099940">
               <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="font-semibold">0123 456 789</span>
+                <span className="font-semibold">0899 099 940</span>
               </Button>
             </a>
             

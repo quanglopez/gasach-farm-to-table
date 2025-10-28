@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import logo from '@/assets/gasach-logo.png';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -24,10 +25,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-primary">Ga</span>
-              <span className="text-secondary">sach</span>
-            </div>
+            <img src={logo} alt="Gasach Logo" className="h-10 mb-4" />
             <p className="text-muted-foreground mb-4">
               Gà sạch cho bữa ăn an toàn và ngon trọn vị!
             </p>
@@ -72,7 +70,7 @@ const Footer = () => {
             <ul className="space-y-2 mb-4">
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>0123 456 789</span>
+                <span>0899 099 940</span>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 mt-1 flex-shrink-0" />
@@ -80,7 +78,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>Hà Nội, Việt Nam</span>
+                <span>64 Đào Trí Phú, P.Long Khánh (P.Xuân Thanh cũ), Đồng Nai</span>
               </li>
             </ul>
             

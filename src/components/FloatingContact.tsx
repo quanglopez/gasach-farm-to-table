@@ -5,7 +5,7 @@ const FloatingContact = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
       <a
-        href="https://zalo.me/0123456789"
+        href="https://zalo.me/0899099940"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -17,7 +17,7 @@ const FloatingContact = () => {
         </Button>
       </a>
       
-      <a href="tel:0123456789">
+      <a href="tel:0899099940">
         <Button
           size="lg"
           className="h-14 w-14 rounded-full shadow-lg bg-accent hover:opacity-90 floating-pulse"

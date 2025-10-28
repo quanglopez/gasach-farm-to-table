@@ -52,10 +52,10 @@ const Contact = () => {
                 <div>
                   <h3 className="font-bold mb-2">Hotline</h3>
                   <a
-                    href="tel:0123456789"
+                    href="tel:0899099940"
                     className="text-lg text-primary hover:underline"
                   >
-                    0123 456 789
+                    0899 099 940
                   </a>
                   <p className="text-sm text-muted-foreground mt-1">
                     Hỗ trợ 24/7
@@ -96,8 +96,8 @@ const Contact = () => {
                 <div>
                   <h3 className="font-bold mb-2">Địa chỉ</h3>
                   <p className="text-muted-foreground">
-                    Trang trại Gasach<br />
-                    Hà Nội, Việt Nam
+                    64 Đào Trí Phú, P.Long Khánh<br />
+                    (P.Xuân Thanh cũ), Đồng Nai
                   </p>
                 </div>
               </div>
@@ -143,7 +143,7 @@ const Contact = () => {
                   </Button>
                 </a>
                 <a
-                  href="https://zalo.me/0123456789"
+                  href="https://zalo.me/0899099940"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
