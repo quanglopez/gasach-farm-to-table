@@ -23,7 +23,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Gasach Logo" className="h-12 md:h-14" />
+            <img src={logo} alt="Gasach Logo" className="h-14 md:h-16" />
           </Link>
 
           <nav className="hidden md:flex items-center space-x-1">

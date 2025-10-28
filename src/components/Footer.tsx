@@ -25,7 +25,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <img src={logo} alt="Gasach Logo" className="h-10 mb-4" />
+            <img src={logo} alt="Gasach Logo" className="h-16 mb-4" />
             <p className="text-muted-foreground mb-4">
               Gà sạch cho bữa ăn an toàn và ngon trọn vị!
             </p>
