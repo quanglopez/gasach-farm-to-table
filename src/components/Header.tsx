@@ -3,6 +3,7 @@ import { ShoppingCart, Phone } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import MobileMenu from '@/components/MobileMenu';
 import logo from '@/assets/gasach-logo.png';
 
 const Header = () => {
@@ -19,22 +20,22 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur-xl shadow-sm supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 md:h-20 items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Gasach Logo" className="h-14 md:h-16" />
+            <img src={logo} alt="Gasach Logo" className="h-12 md:h-16" />
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 lg:px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                   location.pathname === item.path
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-foreground hover:bg-muted'
+                    ? 'bg-primary text-primary-foreground shadow-[var(--shadow-soft)]'
+                    : 'text-foreground hover:bg-muted hover:scale-105'
                 }`}
               >
                 {item.label}
@@ -42,11 +43,11 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
-            <a href="tel:0899099940">
-              <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-2">
+          <div className="flex items-center space-x-2 md:space-x-3">
+            <a href="tel:0899099940" className="hidden sm:block">
+              <Button variant="outline" size="sm" className="items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="font-semibold">0899 099 940</span>
+                <span className="font-semibold hidden lg:inline">0899 099 940</span>
               </Button>
             </a>
             
@@ -55,13 +56,15 @@ const Header = () => {
                 <ShoppingCart className="h-5 w-5" />
                 {itemCount > 0 && (
                   <Badge 
-                    className="absolute -top-2 -right-2 h-6 w-6 flex items-center justify-center p-0 bg-accent text-accent-foreground"
+                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-accent text-accent-foreground text-xs font-bold border-2 border-card"
                   >
                     {itemCount}
                   </Badge>
                 )}
               </Button>
             </Link>
+
+            <MobileMenu />
           </div>
         </div>
       </div>

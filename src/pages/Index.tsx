@@ -14,34 +14,37 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center gradient-hero">
+      <section className="relative min-h-[500px] md:h-[600px] lg:h-[700px] flex items-center gradient-hero overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroChicken}
             alt="Gà sạch tươi ngon"
             className="w-full h-full object-cover mix-blend-overlay opacity-30"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 py-12 md:py-0 relative z-10">
           <div className="max-w-2xl animate-fade-in">
-            <Badge className="mb-4 bg-accent text-accent-foreground">100% Tự Nhiên</Badge>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Gà Sạch Cho Bữa Ăn <span className="text-primary">An Toàn</span> Và{' '}
+            <Badge className="mb-4 md:mb-6 bg-accent text-accent-foreground shadow-lg text-sm md:text-base px-4 py-1.5">
+              ✨ 100% Tự Nhiên
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+              Gà Sạch Cho Bữa Ăn <span className="text-gradient">An Toàn</span> Và{' '}
               <span className="text-secondary">Ngon Trọn Vị!</span>
             </h1>
-            <p className="text-xl mb-8 text-muted-foreground">
+            <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-muted-foreground leading-relaxed">
               Gà ta tươi ngon, nuôi tự nhiên, không chất tăng trọng, không kháng sinh độc hại.
               Nguồn gốc rõ ràng, giao hàng tận nơi.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/products">
-                <Button size="lg" className="btn-accent text-lg">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+              <Link to="/products" className="w-full sm:w-auto">
+                <Button size="lg" variant="accent" className="w-full sm:w-auto text-base md:text-lg">
                   Đặt Hàng Ngay <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href="tel:0123456789">
-                <Button size="lg" variant="outline" className="text-lg">
+              <a href="tel:0899099940" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base md:text-lg border-2">
                   Gọi Tư Vấn Miễn Phí
                 </Button>
               </a>
@@ -51,13 +54,13 @@ const Index = () => {
       </section>
 
       {/* Value Proposition */}
-      <section className="py-20 bg-card">
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Tại Sao Chọn <span className="text-primary">Gasach</span>?
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+            Tại Sao Chọn <span className="text-gradient">Gasach</span>?
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               {
                 icon: Leaf,
@@ -80,12 +83,12 @@ const Index = () => {
                 description: 'Truy xuất nguồn gốc minh bạch từ trang trại đến bàn ăn',
               },
             ].map((item, index) => (
-              <Card key={index} className="p-6 text-center card-hover">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                  <item.icon className="h-8 w-8 text-primary" />
+              <Card key={index} className="p-5 md:p-6 text-center card-hover card-glass border-2">
+                <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3 md:mb-4 shadow-[var(--shadow-soft)]">
+                  <item.icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{item.description}</p>
               </Card>
             ))}
           </div>
