@@ -267,7 +267,7 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg">
+              <Button size="lg" variant="accent" className="text-lg">
                 Liên Hệ Tư Vấn
               </Button>
             </Link>
