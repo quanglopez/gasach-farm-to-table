@@ -169,16 +169,15 @@ const Index = () => {
                 Môi Trường Nuôi <span className="text-secondary">Tự Nhiên</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Trang trại Chicken Fresh tọa lạc tại Đồng Nai, với không gian rộng rãi,
-                thoáng mát và trong lành. Gà được chăn thả tự do trên đồng cỏ xanh mướt,
-                tận hưởng ánh nắng mặt trời tự nhiên và không khí trong lành.
+                Trang trại toạ lạc tại địa bàn tỉnh Đồng Nai, với không gian rộng rãi, 
+                nguồn nước và thức ăn được kiểm soát chặt chẽ. Gà được chăn thả tự do, 
+                và chăm sóc kỹ lưỡng.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  'Diện tích rộng 5 hecta với môi trường tự nhiên',
                   'Nguồn nước sạch từ giếng khoan sâu',
-                  'Thức ăn hữu cơ, không hóa chất',
-                  'Chăm sóc tận tâm bởi đội ngũ chuyên nghiệp',
+                  'Thức ăn hữu cơ, không hoá chất',
+                  'Đội ngũ Chuyên nghiệp, có kỹ năng nghiệp vụ về gia cầm',
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
