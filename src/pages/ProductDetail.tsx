@@ -7,6 +7,37 @@ import { Minus, Plus, ShoppingCart, ArrowLeft } from 'lucide-react';
 import { getProductById, products } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
 import ProductCard from '@/components/ProductCard';
+import chickenTexture from '@/assets/chicken-texture.jpg';
+import chickenParts from '@/assets/chicken-parts.jpg';
+import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
+import chickenCooked from '@/assets/chicken-cooked.jpg';
+
+const detailImages = [
+  {
+    id: 'texture',
+    title: 'Thớ Thịt Chi Tiết',
+    image: chickenTexture,
+    description: 'Sợi thịt mịn màng, tươi ngon tự nhiên',
+  },
+  {
+    id: 'parts',
+    title: 'Phần Đùi & Cánh',
+    image: chickenParts,
+    description: 'Thịt đùi và cánh săn chắc',
+  },
+  {
+    id: 'whole-raw',
+    title: 'Gà Nguyên Con Tươi',
+    image: chickenWholeRaw,
+    description: 'Da vàng óng, tươi sống',
+  },
+  {
+    id: 'cooked',
+    title: 'Sau Khi Chế Biến',
+    image: chickenCooked,
+    description: 'Da giòn, thơm ngon hấp dẫn',
+  },
+];
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -154,6 +185,32 @@ const ProductDetail = () => {
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        {/* Detail Images Gallery */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Chi Tiết <span className="text-primary">Sản Phẩm</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {detailImages.map((img) => (
+              <Card key={img.id} className="overflow-hidden card-hover group">
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={img.image}
+                    alt={img.title}
+                    className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                      <h3 className="font-bold text-lg mb-1">{img.title}</h3>
+                      <p className="text-sm text-white/90">{img.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
 

@@ -10,6 +10,7 @@ const MobileMenu = () => {
   const menuItems = [
     { path: '/', label: 'Trang chủ' },
     { path: '/products', label: 'Sản phẩm' },
+    { path: '/gallery', label: 'Thư viện ảnh' },
     { path: '/about', label: 'Về chúng tôi' },
     { path: '/quality', label: 'Cam kết chất lượng' },
     { path: '/promotions', label: 'Khuyến mãi' },
