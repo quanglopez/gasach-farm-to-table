@@ -43,9 +43,9 @@ const Index = () => {
                   Đặt Hàng Ngay <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href="tel:0899099940" className="w-full sm:w-auto">
+              <a href="https://m.me/61582742801525" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto text-base md:text-lg border-2">
-                  Gọi Tư Vấn Miễn Phí
+                  Liên Hệ Tư Vấn Miễn Phí
                 </Button>
               </a>
             </div>
