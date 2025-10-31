@@ -15,6 +15,7 @@ const Header = () => {
     { path: '/products', label: 'Sản phẩm' },
     { path: '/gallery', label: 'Thư viện ảnh' },
     { path: '/about', label: 'Về chúng tôi' },
+    { path: '/reviews', label: 'Phản Hồi KH' },
     { path: '/quality', label: 'Cam kết chất lượng' },
     { path: '/promotions', label: 'Khuyến mãi' },
     { path: '/contact', label: 'Liên hệ' },

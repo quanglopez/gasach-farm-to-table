@@ -44,56 +44,45 @@ const Reviews = () => {
 
   const reviews = [
     {
-      name: 'Chị Lan Anh',
-      location: 'Hà Nội',
+      name: 'Chị Phương Thảo',
+      location: 'Long Khánh, Đồng Nai',
       rating: 5,
-      date: '15/11/2024',
+      date: '25/11/2025',
       comment:
-        'Gà rất tươi ngon, thịt dai và ngọt tự nhiên. Gia đình tôi rất hài lòng với chất lượng. Da gà vàng óng, thịt săn chắc. Sẽ ủng hộ Gasach lâu dài!',
+        'Gà rất tươi ngon, thịt dai và ngọt tự nhiên. Gia đình tôi ở Long Khánh rất hài lòng với chất lượng. Da gà vàng óng, thịt săn chắc. Đã đặt mua nhiều lần và sẽ ủng hộ Gasach lâu dài!',
       productQuality: 5,
       deliveryService: 5,
       staffAttitude: 5,
     },
     {
       name: 'Anh Minh Tuấn',
-      location: 'Bắc Ninh',
+      location: 'Long Khánh, Đồng Nai',
       rating: 5,
-      date: '12/11/2024',
+      date: '18/11/2025',
       comment:
-        'Mua thử lần đầu và rất ưng ý. Nấu phở gà ngon tuyệt vời. Giá hợp lý so với chất lượng. Giao hàng nhanh, đóng gói cẩn thận. Chắc chắn sẽ mua lại!',
-      productQuality: 5,
-      deliveryService: 4,
-      staffAttitude: 5,
-    },
-    {
-      name: 'Chị Hương',
-      location: 'Hải Phòng',
-      rating: 5,
-      date: '10/11/2024',
-      comment:
-        'Đặt hàng online rất dễ dàng. Gà tươi ngon, không tanh. Dịch vụ tốt, nhân viên nhiệt tình tư vấn. Chất lượng đúng như mô tả. Rất hài lòng!',
+        'Mua thử lần đầu và rất ưng ý. Nấu phở gà cho gia đình ngon tuyệt vời. Giá hợp lý so với chất lượng. Giao hàng tận nhà ở Long Khánh nhanh chóng, đóng gói cẩn thận. Chắc chắn sẽ mua lại!',
       productQuality: 5,
       deliveryService: 5,
       staffAttitude: 5,
     },
     {
-      name: 'Anh Đức',
-      location: 'Hà Nội',
-      rating: 4,
-      date: '08/11/2024',
+      name: 'Chị Hương Lan',
+      location: 'Long Khánh, Đồng Nai',
+      rating: 5,
+      date: '12/11/2025',
       comment:
-        'Gà ngon, thịt chắc. Giá hơi cao nhưng đáng tiền. Lần sau sẽ mua combo để được giảm giá hơn. Nhìn chung rất ổn!',
-      productQuality: 4,
-      deliveryService: 4,
-      staffAttitude: 4,
+        'Đặt hàng rất dễ dàng. Gà tươi ngon, không tanh, thịt chắc. Dịch vụ tốt, nhân viên nhiệt tình tư vấn. Chất lượng đúng như cam kết. Cả nhà đều rất hài lòng và sẽ giới thiệu cho bạn bè!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
     },
     {
-      name: 'Chị Mai',
-      location: 'Hà Nội',
+      name: 'Anh Văn Đức',
+      location: 'Long Khánh, Đồng Nai',
       rating: 5,
-      date: '05/11/2024',
+      date: '05/11/2025',
       comment:
-        'Gà sạch thật sự, ăn yên tâm. Thích nhất là da gà vàng tự nhiên, không giống gà công nghiệp. Cả nhà đều khen ngon. Cảm ơn Gasach!',
+        'Gà sạch thật sự, ăn rất yên tâm. Thích nhất là da gà vàng tự nhiên, không giống gà công nghiệp. Mua cho bố mẹ và cả nhà đều khen ngon. Gasach là lựa chọn tốt nhất cho bữa cơm gia đình!',
       productQuality: 5,
       deliveryService: 5,
       staffAttitude: 5,
@@ -148,18 +137,18 @@ const Reviews = () => {
           </Card>
           
           <Card className="p-6 text-center">
-            <div className="text-4xl font-bold text-primary mb-2">10,000+</div>
+            <div className="text-4xl font-bold text-primary mb-2">500+</div>
             <p className="text-muted-foreground">Khách hàng hài lòng</p>
           </Card>
           
           <Card className="p-6 text-center">
             <div className="text-4xl font-bold text-primary mb-2">98%</div>
-            <p className="text-muted-foreground">Tỷ lệ hài lòng</p>
+            <p className="text-muted-foreground">Phản hồi tích cực</p>
           </Card>
           
           <Card className="p-6 text-center">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
-            <p className="text-muted-foreground">Đánh giá 5 sao</p>
+            <div className="text-4xl font-bold text-primary mb-2">60%+</div>
+            <p className="text-muted-foreground">Khách hàng trung thành</p>
           </Card>
         </div>
 
