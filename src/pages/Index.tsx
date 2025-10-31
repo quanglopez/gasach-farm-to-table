@@ -100,8 +100,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Sản Phẩm Nổi Bật</h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-2">
               Chọn lựa gà sạch chất lượng cao cho gia đình bạn
+            </p>
+            <p className="text-lg text-muted-foreground font-medium">
+              Gà nuôi 100% tự nhiên - Được thả vườn, môi trường tự nhiên, cho ăn bắp và cám nên thịt săn chắc và đảm bảo an toàn
             </p>
           </div>
           
