@@ -4,7 +4,7 @@ import { useCart } from '@/contexts/CartContext';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import MobileMenu from '@/components/MobileMenu';
-import logo from '@/assets/gasach-logo.png';
+import logo from '@/assets/gasach-logo-new.png';
 
 const Header = () => {
   const location = useLocation();
