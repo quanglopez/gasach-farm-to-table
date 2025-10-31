@@ -5,7 +5,7 @@ const FloatingContact = () => {
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3">
       <a
-        href="https://zalo.me/0899099940"
+        href="https://m.me/61582742801525"
         target="_blank"
         rel="noopener noreferrer"
       >

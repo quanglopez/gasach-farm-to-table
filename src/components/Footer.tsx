@@ -30,9 +30,11 @@ const Footer = () => {
               Gà sạch chất lượng cao cho bữa cơm gia đình sum vầy, ấm áp và hạnh phúc!
             </p>
             <div className="flex space-x-2">
-              <Button variant="outline" size="icon">
-                <Facebook className="h-4 w-4" />
-              </Button>
+              <a href="https://www.facebook.com/profile.php?id=61582742801525" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon">
+                  <Facebook className="h-4 w-4" />
+                </Button>
+              </a>
               <Button variant="outline" size="icon">
                 <Instagram className="h-4 w-4" />
               </Button>

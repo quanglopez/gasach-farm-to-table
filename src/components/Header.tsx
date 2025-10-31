@@ -48,7 +48,7 @@ const Header = () => {
             <a href="tel:0899099940" className="hidden sm:block">
               <Button variant="outline" size="sm" className="items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="font-semibold hidden lg:inline">0899 099 940</span>
+                <span className="font-semibold hidden lg:inline">Gặp Admin Page</span>
               </Button>
             </a>
             
