@@ -199,41 +199,79 @@ const Index = () => {
       {/* Testimonials */}
       <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Khách Hàng Nói Gì Về <span className="text-primary">Chicken Fresh</span>
+          <h2 className="text-4xl font-bold text-center mb-4">
+            Phản Hồi <span className="text-accent">Khách Hàng</span>
           </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Ý kiến của bạn rất quan trọng với chúng tôi. Hãy chia sẻ trải nghiệm của bạn để giúp Gasach ngày càng hoàn thiện hơn!
+          </p>
+
+          {/* Statistics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <Card className="p-6 text-center">
+              <div className="text-4xl font-bold text-accent mb-2">5.0</div>
+              <div className="flex gap-1 justify-center mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-accent text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground">Đánh giá trung bình</p>
+            </Card>
+            
+            <Card className="p-6 text-center">
+              <div className="text-4xl font-bold text-accent mb-2">500+</div>
+              <p className="text-sm text-muted-foreground">Khách hàng hài lòng</p>
+            </Card>
+            
+            <Card className="p-6 text-center">
+              <div className="text-4xl font-bold text-accent mb-2">98%</div>
+              <p className="text-sm text-muted-foreground">Tỷ lệ hài lòng</p>
+            </Card>
+            
+            <Card className="p-6 text-center">
+              <div className="text-4xl font-bold text-accent mb-2">60%+</div>
+              <p className="text-sm text-muted-foreground">Khách hàng trung thành</p>
+            </Card>
+          </div>
           
+          {/* Testimonials */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                name: 'Chị Lan Anh',
-                location: 'Đồng Nai',
+                name: 'Chị Mai Phương',
+                location: 'Long Khánh, Đồng Nai',
                 rating: 5,
+                date: '05/11/2025',
                 comment:
-                  'Gà rất tươi ngon, thịt dai và ngọt tự nhiên. Gia đình tôi rất hài lòng với chất lượng. Bữa cơm gia đình thêm phần sum vầy và ấm cúng!',
+                  'Gia đình mình mua gà của Gasach được gần 1 năm rồi. Chất lượng luôn ổn định, thịt gà thơm ngon, da vàng óng. Đặc biệt là dịch vụ giao hàng rất nhanh, gà luôn tươi. Giá cả hợp lý, cả nhà rất hài lòng!',
               },
               {
-                name: 'Anh Minh Tuấn',
-                location: 'Biên Hòa',
+                name: 'Anh Thanh Tùng',
+                location: 'Long Khánh, Đồng Nai',
                 rating: 5,
+                date: '08/11/2025',
                 comment:
-                  'Mua thử lần đầu và rất ưng ý. Da gà vàng óng, thịt săn chắc. Nấu phở gà ngon tuyệt vời. Giá hợp lý so với chất lượng.',
+                  'Mình đã thử nhiều nơi bán gà sạch nhưng chỉ có Gasach là ưng ý nhất. Gà nuôi tự nhiên nên thịt dai, ngọt và rất thơm. Nấu phở hay luộc đều ngon. Nhân viên tư vấn nhiệt tình, đóng gói cẩn thận!',
               },
               {
-                name: 'Chị Hương',
-                location: 'Long Khánh',
+                name: 'Chị Ngọc Hân',
+                location: 'Biên Hòa, Đồng Nai',
                 rating: 5,
+                date: '12/11/2025',
                 comment:
-                  'Đặt hàng online rất dễ dàng, giao hàng nhanh. Gà đóng gói cẩn thận, tươi ngon. Dịch vụ tốt, nhân viên nhiệt tình!',
+                  'Lần đầu đặt mua nhưng rất hài lòng với chất lượng. Gà tươi, sạch sẽ, không mùi. Bữa cơm gia đình ngon hơn hẳn khi dùng gà của Gasach. Chắc chắn sẽ ủng hộ lâu dài!',
               },
             ].map((testimonial, index) => (
               <Card key={index} className="p-6">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-primary text-xl">★</span>
-                  ))}
+                <div className="flex justify-between items-start mb-3">
+                  <div className="flex gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <span key={i} className="text-accent text-xl">★</span>
+                    ))}
+                  </div>
+                  <span className="text-sm text-muted-foreground">{testimonial.date}</span>
                 </div>
-                <p className="text-muted-foreground mb-4 italic">"{testimonial.comment}"</p>
+                <p className="text-muted-foreground mb-4 italic leading-relaxed">"{testimonial.comment}"</p>
                 <div>
                   <p className="font-bold">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.location}</p>
