@@ -12,11 +12,12 @@ const About = () => {
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-primary text-primary-foreground">Về Chúng Tôi</Badge>
           <h1 className="text-5xl font-bold mb-6">
-            Câu Chuyện Của <span className="text-primary">Gasach</span>
+            <span className="text-primary">Chicken Fresh</span> - Gà Sạch
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Chúng tôi bắt đầu với niềm đam mê mang đến những sản phẩm gà sạch, an toàn và chất lượng
-            cao nhất cho mọi gia đình Việt Nam.
+            Hướng tới một lối sống lành mạnh về sức khoẻ, giảm thiểu nỗi lo chi tiêu cho việc ăn uống, 
+            giúp cho việc nấu nướng trở nên đơn giản - tiện lợi, những bữa cơm gia đình sẽ trở nên sum vầy 
+            và hạnh phúc cho gia đình Việt Nam.
           </p>
         </div>
 
@@ -31,19 +32,20 @@ const About = () => {
           </div>
           <div>
             <h2 className="text-4xl font-bold mb-6">
-              Sứ Mệnh: <span className="text-secondary">An Toàn Thực Phẩm</span>
+              Tầm Nhìn: <span className="text-secondary">Bữa Cơm Gia Đình</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Gasach ra đời từ mong muốn giải quyết vấn nạn an toàn thực phẩm đang là nỗi lo lắng
-              của nhiều gia đình Việt. Chúng tôi cam kết cung cấp gà sạch 100% tự nhiên, nuôi dưỡng
-              theo quy trình khép kín và được kiểm soát chất lượng nghiêm ngặt.
+              Tầm nhìn tới 2030 là một thương hiệu nhượng quyền hướng tới 50% bếp ăn trong gia đình Việt 
+              những món ăn với Gà Sạch chất lượng đi kèm là đạt tiêu chuẩn cao trong tỉnh Đồng Nai. 
+              Chúng tôi tập trung vào tệp khách hàng có tính local, nơi "Bữa cơm gia đình" là điều họ luôn 
+              mong muốn và duy trì.
             </p>
             <ul className="space-y-3">
               {[
-                'Không sử dụng chất tăng trọng, kích thích sinh trưởng',
-                'Không sử dụng kháng sinh, hóa chất độc hại',
-                'Nuôi dưỡng tự nhiên trong môi trường sạch sẽ',
-                'Thức ăn hữu cơ, không biến đổi gen',
+                'Thấu hiểu mong muốn của phụ nữ Việt Nam trong việc chăm sóc gia đình',
+                'Mang đến sự an tâm với gà sạch chất lượng cao',
+                'Giúp bữa cơm gia đình trở nên ấm áp và hạnh phúc',
+                'Đơn giản hóa việc nấu nướng, tiết kiệm thời gian',
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
@@ -140,19 +142,15 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: 'Chất Lượng Là Hàng Đầu',
-                desc: 'Không bao giờ thỏa hiệp về chất lượng. Mỗi sản phẩm đều phải đạt tiêu chuẩn cao nhất.',
+                title: 'Tiêu Chuẩn Chất Lượng',
+                desc: 'Cam kết duy trì tiêu chuẩn chất lượng cao nhất từ nguồn cung cấp, sản xuất, đóng gói đến vận chuyển. Mỗi khâu đều được kiểm soát chặt chẽ.',
               },
               {
-                title: 'Minh Bạch & Trung Thực',
-                desc: 'Công khai nguồn gốc, quy trình sản xuất. Khách hàng có quyền biết họ đang ăn gì.',
-              },
-              {
-                title: 'Tận Tâm Với Khách Hàng',
-                desc: 'Luôn lắng nghe và đặt lợi ích của khách hàng lên hàng đầu trong mọi quyết định.',
+                title: 'Hài Lòng Dịch Vụ',
+                desc: 'Đặt sự hài lòng của khách hàng lên hàng đầu. Luôn lắng nghe và cải thiện dịch vụ để mang đến trải nghiệm tốt nhất cho mọi gia đình.',
               },
             ].map((value, index) => (
               <Card key={index} className="p-6">

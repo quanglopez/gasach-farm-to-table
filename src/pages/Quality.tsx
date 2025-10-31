@@ -9,13 +9,13 @@ const Quality = () => {
       <div className="container mx-auto px-4">
         {/* Hero */}
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-secondary text-secondary-foreground">Cam Kết Chất Lượng</Badge>
+          <Badge className="mb-4 bg-secondary text-secondary-foreground">Tiêu Chuẩn 3 Sạch</Badge>
           <h1 className="text-5xl font-bold mb-6">
-            An Toàn <span className="text-primary">100%</span> Cho Sức Khỏe
+            Chất Lượng Là <span className="text-primary">Hàng Đầu</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Gasach cam kết mang đến sản phẩm gà sạch với chất lượng tuyệt đối, được kiểm soát chặt
-            chẽ từng khâu để đảm bảo an toàn thực phẩm cho mọi gia đình.
+            Chicken Fresh cam kết tiêu chuẩn 3 sạch: Nguồn cung cấp sạch - Sản xuất và đóng gói sạch - 
+            Vận chuyển giao hàng sạch. Mỗi khâu được kiểm soát chặt chẽ để đảm bảo chất lượng và dịch vụ hài lòng.
           </p>
         </div>
 
@@ -31,30 +31,25 @@ const Quality = () => {
         {/* Quality Commitments */}
         <div className="mb-20">
           <h2 className="text-4xl font-bold text-center mb-12">
-            Cam Kết <span className="text-primary">Chất Lượng</span>
+            Tiêu Chuẩn <span className="text-primary">3 Sạch</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Shield,
-                title: 'Không Chất Tăng Trọng',
-                desc: 'Gà được nuôi tự nhiên, không sử dụng bất kỳ chất kích thích tăng trọng nào. Thời gian nuôi đủ 90-120 ngày để gà phát triển tự nhiên.',
+                title: 'Nguồn Cung Cấp Sạch',
+                desc: 'Tiêu chuẩn nhập đầu vào được kiểm soát chặt chẽ. Chọn lọc giống gà ta thuần chủng, khỏe mạnh từ các trang trại uy tín với chứng nhận đầy đủ.',
               },
               {
                 icon: CheckCircle,
-                title: 'Không Kháng Sinh',
-                desc: 'Không sử dụng kháng sinh trong suốt quá trình nuôi dưỡng. Thay vào đó, chúng tôi chú trọng phòng bệnh bằng cách tăng cường miễn dịch tự nhiên.',
+                title: 'Sản Xuất & Đóng Gói Sạch',
+                desc: 'Tiêu chuẩn về cơ sở vật chất, chuồng trại ở nơi gia công được đảm bảo. Quy trình sản xuất và đóng gói đạt chuẩn vệ sinh an toàn thực phẩm.',
               },
               {
                 icon: Award,
-                title: 'Thức Ăn Hữu Cơ',
-                desc: 'Gà được cho ăn thức ăn hữu cơ, không biến đổi gen. Thức ăn bao gồm ngô, thóc, rau xanh tươi và các loại hạt tự nhiên.',
-              },
-              {
-                icon: FileCheck,
-                title: 'Kiểm Tra Định Kỳ',
-                desc: 'Đàn gà được kiểm tra sức khỏe định kỳ bởi bác sĩ thú y. Mỗi con gà trước khi xuất chuồng đều được kiểm tra kỹ lưỡng.',
+                title: 'Vận Chuyển Giao Hàng Sạch',
+                desc: 'Bảo quản nhiệt độ phù hợp trong suốt quá trình vận chuyển. Tiêu chuẩn cơ sở vật chất tại điểm bán và kho hàng được kiểm soát nghiêm ngặt.',
               },
             ].map((item, index) => (
               <Card key={index} className="p-8 card-hover">
@@ -84,33 +79,23 @@ const Quality = () => {
             {[
               {
                 step: '1',
-                title: 'Kiểm Tra Giống',
-                desc: 'Chọn lọc giống gà ta thuần chủng, khỏe mạnh. Kiểm tra di truyền và tiêm phòng đầy đủ trước khi đưa vào nuôi.',
+                title: 'Kiểm Soát Đầu Vào',
+                desc: 'Tiêu chuẩn nhập đầu vào: Chọn lọc giống gà ta thuần chủng, kiểm tra nguồn gốc rõ ràng, chứng nhận đầy đủ từ nhà cung cấp uy tín.',
               },
               {
                 step: '2',
-                title: 'Giám Sát Môi Trường',
-                desc: 'Theo dõi nhiệt độ, độ ẩm, ánh sáng hàng ngày. Vệ sinh, khử trùng chuồng trại định kỳ để đảm bảo môi trường sống tốt nhất.',
+                title: 'Khâu Sản Xuất',
+                desc: 'Tiêu chuẩn về cơ sở vật chất, chuồng trại ở nơi gia công: Môi trường nuôi đạt chuẩn, vệ sinh định kỳ, giám sát nhiệt độ và độ ẩm thường xuyên.',
               },
               {
                 step: '3',
-                title: 'Kiểm Tra Thức Ăn',
-                desc: 'Nguồn thức ăn được kiểm tra chất lượng trước khi sử dụng. Đảm bảo không có hóa chất, không biến đổi gen.',
+                title: 'Kênh Bán Hàng',
+                desc: 'Bảo quản nhiệt độ phù hợp hàng trong quá trình bán ra. Tiêu chuẩn cơ sở vật chất nơi trưng bày hàng tại điểm bán được kiểm tra nghiêm ngặt.',
               },
               {
                 step: '4',
-                title: 'Kiểm Tra Sức Khỏe',
-                desc: 'Bác sĩ thú y kiểm tra đàn gà hàng tuần. Phát hiện sớm và xử lý kịp thời nếu có bất thường.',
-              },
-              {
-                step: '5',
-                title: 'Kiểm Tra Trước Xuất Chuồng',
-                desc: 'Mỗi con gà được kiểm tra kỹ lưỡng về sức khỏe, cân nặng, da thịt trước khi xuất chuồng.',
-              },
-              {
-                step: '6',
-                title: 'Quy Trình Giết Mổ',
-                desc: 'Giết mổ theo tiêu chuẩn vệ sinh an toàn thực phẩm. Đóng gói cẩn thận trong môi trường vô trùng.',
+                title: 'Quản Lý Hàng Tồn',
+                desc: 'Bảo quản nhiệt độ phù hợp trong quá trình thanh lý hàng tồn kho. Cơ sở vật chất nơi trưng bày hàng đảm bảo chất lượng sản phẩm.',
               },
             ].map((step, index) => (
               <Card key={index} className="p-6">

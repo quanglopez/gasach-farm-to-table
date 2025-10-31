@@ -30,12 +30,12 @@ const Index = () => {
               ✨ 100% Tự Nhiên
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              Gà Sạch Cho Bữa Ăn <span className="text-gradient">An Toàn</span> Và{' '}
-              <span className="text-secondary">Ngon Trọn Vị!</span>
+              Gà Sạch Cho <span className="text-gradient">Bữa Cơm Gia Đình</span>{' '}
+              <span className="text-secondary">Sum Vầy Và Hạnh Phúc!</span>
             </h1>
             <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-muted-foreground leading-relaxed">
               Gà ta tươi ngon, nuôi tự nhiên, không chất tăng trọng, không kháng sinh độc hại.
-              Nguồn gốc rõ ràng, giao hàng tận nơi.
+              Giúp bữa nấu nướng đơn giản - tiện lợi, mang đến sự ấm áp cho mỗi bữa ăn gia đình.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link to="/products" className="w-full sm:w-auto">
@@ -57,7 +57,7 @@ const Index = () => {
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
-            Tại Sao Chọn <span className="text-gradient">Gasach</span>?
+            Tại Sao Chọn <span className="text-gradient">Chicken Fresh</span>?
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -166,7 +166,7 @@ const Index = () => {
                 Môi Trường Nuôi <span className="text-secondary">Tự Nhiên</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Trang trại Gasach tọa lạc tại vùng ngoại thành Hà Nội, với không gian rộng rãi,
+                Trang trại Chicken Fresh tọa lạc tại Đồng Nai, với không gian rộng rãi,
                 thoáng mát và trong lành. Gà được chăn thả tự do trên đồng cỏ xanh mướt,
                 tận hưởng ánh nắng mặt trời tự nhiên và không khí trong lành.
               </p>
@@ -197,28 +197,28 @@ const Index = () => {
       <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">
-            Khách Hàng Nói Gì Về <span className="text-primary">Gasach</span>
+            Khách Hàng Nói Gì Về <span className="text-primary">Chicken Fresh</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 name: 'Chị Lan Anh',
-                location: 'Hà Nội',
+                location: 'Đồng Nai',
                 rating: 5,
                 comment:
-                  'Gà rất tươi ngon, thịt dai và ngọt tự nhiên. Gia đình tôi rất hài lòng với chất lượng. Sẽ ủng hộ Gasach lâu dài!',
+                  'Gà rất tươi ngon, thịt dai và ngọt tự nhiên. Gia đình tôi rất hài lòng với chất lượng. Bữa cơm gia đình thêm phần sum vầy và ấm cúng!',
               },
               {
                 name: 'Anh Minh Tuấn',
-                location: 'Bắc Ninh',
+                location: 'Biên Hòa',
                 rating: 5,
                 comment:
                   'Mua thử lần đầu và rất ưng ý. Da gà vàng óng, thịt săn chắc. Nấu phở gà ngon tuyệt vời. Giá hợp lý so với chất lượng.',
               },
               {
                 name: 'Chị Hương',
-                location: 'Hải Phòng',
+                location: 'Long Khánh',
                 rating: 5,
                 comment:
                   'Đặt hàng online rất dễ dàng, giao hàng nhanh. Gà đóng gói cẩn thận, tươi ngon. Dịch vụ tốt, nhân viên nhiệt tình!',

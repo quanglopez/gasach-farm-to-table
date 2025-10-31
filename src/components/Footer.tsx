@@ -25,9 +25,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <img src={logo} alt="Gasach Logo" className="h-16 mb-4" />
+            <img src={logo} alt="Chicken Fresh - Gà Sạch" className="h-16 mb-4" />
             <p className="text-muted-foreground mb-4">
-              Gà sạch cho bữa ăn an toàn và ngon trọn vị!
+              Gà sạch chất lượng cao cho bữa cơm gia đình sum vầy, ấm áp và hạnh phúc!
             </p>
             <div className="flex space-x-2">
               <Button variant="outline" size="icon">
@@ -74,7 +74,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>info@gasach.vn</span>
+                <span>info@chickenfresh.vn</span>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
@@ -101,7 +101,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-muted-foreground text-sm">
-          <p>&copy; 2024 Gasach. Tất cả quyền được bảo lưu.</p>
+          <p>&copy; 2024 Chicken Fresh - Gà Sạch. Tất cả quyền được bảo lưu.</p>
         </div>
       </div>
     </footer>
