@@ -57,30 +57,30 @@ const Index = () => {
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
-            Tại Sao Chọn <span className="text-gradient">Chicken Fresh</span>?
+            Tại Sao Chọn <span className="text-gradient">Gà Sạch</span>?
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               {
                 icon: Leaf,
-                title: 'Nuôi Tự Nhiên 100%',
-                description: 'Gà được chăn thả tự do, ăn thức ăn tự nhiên trong môi trường sạch sẽ',
+                title: 'Gà Nuôi Tự Nhiên 100%',
+                description: 'Gà được nuôi thả vườn trong môi trường tự nhiên, ăn bắp và cám sạch, giúp thịt săn chắc, thơm ngon và đảm bảo an toàn tuyệt đối cho sức khỏe',
               },
               {
                 icon: Shield,
-                title: 'Không Chất Tăng Trọng',
-                description: 'Cam kết không sử dụng bất kỳ chất tăng trọng nào trong quá trình nuôi',
+                title: 'Không Chất Tăng Trọng – Không Kháng Sinh',
+                description: 'Tuyệt đối nói không với chất tăng trọng, không sử dụng kháng sinh trong suốt quá trình nuôi. Mỗi con gà đều được kiểm tra chất lượng kỹ lưỡng',
               },
               {
                 icon: Award,
-                title: 'Không Kháng Sinh',
-                description: 'An toàn tuyệt đối, không có kháng sinh độc hại cho sức khỏe',
+                title: 'Nguồn Gốc Minh Bạch – Giá Cả Phù Hợp',
+                description: 'Minh bạch nguồn gốc từ trang trại tới tay khách hàng, truy xuất dễ dàng. Giá bán luôn hợp lý, bình ổn, gần sát với giá thị trường truyền thống',
               },
               {
                 icon: Check,
-                title: 'Nguồn Gốc Rõ Ràng',
-                description: 'Truy xuất nguồn gốc minh bạch từ trang trại đến bàn ăn',
+                title: 'Dịch Vụ Khách Hàng Chu Đáo',
+                description: 'Đội ngũ luôn đồng hành và hỗ trợ nhiệt tình, giúp quý khách có trải nghiệm nhanh chóng, tiện lợi và hài lòng tuyệt đối',
               },
             ].map((item, index) => (
               <Card key={index} className="p-5 md:p-6 text-center card-hover card-glass border-2">
