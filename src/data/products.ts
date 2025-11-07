@@ -1,6 +1,6 @@
-import chickenRegular from '@/assets/chicken-regular.jpg';
-import chickenPremium from '@/assets/chicken-premium.jpg';
-import chickenSuper from '@/assets/chicken-super.jpg';
+import gaMaiTa from '@/assets/ga-mai-ta-main.jpg';
+import gaNuaCon from '@/assets/ga-nua-con-main.jpg';
+import gaTrongTa from '@/assets/ga-trong-ta-1.jpg';
 
 export interface Product {
   id: string;
@@ -17,75 +17,44 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // SKU Basic - Gà ta thường
   {
     id: '1',
-    name: 'SKU Basic - Gà Ta Thường',
-    price: 80000,
-    weight: '1.6 - 1.9 kg',
-    image: chickenRegular,
-    category: 'regular',
-    badge: 'Bán chạy',
-    description: 'Gà thịt độ dài thấp, thịt vẫn thơm nhe, vàng nhe phù hợp với món nướng, chiên, kho và khách hàng chỉ thích ăn dai ít',
-    origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
-    storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
-    cooking: 'Phù hợp để nướng, chiên, kho và khách hàng chỉ thích ăn dai ít',
-  },
-  
-  // SKU Standard - Gà chuẩn ta
-  {
-    id: '2',
-    name: 'SKU Standard - Gà Chuẩn Ta (Trống)',
-    price: 95000,
-    weight: '2.0 - 2.2 kg',
-    image: chickenPremium,
+    name: 'Gà Mái Ta',
+    price: 135000,
+    weight: '1.5 - 1.8 kg',
+    image: gaMaiTa,
     category: 'premium',
     badge: 'Tươi ngon',
-    description: 'Gà thịt có độ dai vừa tới, thịt thơm, ít mỡ, vàng óng tự nhiên, với gà mái có độ béo nhe, trong thỏ thịt. Phù hợp với các món lẩu, kho, luộc,...',
-    origin: 'Trang trại Gasach, chăn thả tự nhiên tại vùng ngoại thành',
+    description: 'Gà mái ta nuôi tự nhiên, thịt thơm ngon, độ dai vừa phải, thích hợp cho các món luộc, hấp, lẩu',
+    origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
     storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
-    cooking: 'Phù hợp với các món lẩu, kho, luộc',
+    cooking: 'Phù hợp với các món luộc, hấp, lẩu',
+  },
+  {
+    id: '2',
+    name: 'Gà Nửa Con',
+    price: 75000,
+    weight: '0.8 - 1.0 kg',
+    image: gaNuaCon,
+    category: 'regular',
+    badge: 'Tiện lợi',
+    description: 'Gà ta nửa con, đã sơ chế sạch, tiện lợi cho gia đình nhỏ hoặc chế biến nhanh',
+    origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
+    storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
+    cooking: 'Phù hợp với các món nướng, chiên, kho, lẩu',
   },
   {
     id: '3',
-    name: 'SKU Standard - Gà Chuẩn Ta (Mái)',
-    price: 110000,
-    weight: '1.5 kg',
-    image: chickenPremium,
-    category: 'premium',
-    badge: 'Tươi ngon',
-    description: 'Gà thịt có độ dai vừa tới, thịt thơm, ít mỡ, vàng óng tự nhiên, với gà mái có độ béo nhe, trong thỏ thịt. Phù hợp với các món lẩu, kho, luộc,...',
-    origin: 'Trang trại Gasach, chăn thả tự nhiên tại vùng ngoại thành',
-    storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
-    cooking: 'Phù hợp với các món lẩu, kho, luộc',
-  },
-  
-  // SKU Premium - Gà ta già ngon
-  {
-    id: '4',
-    name: 'SKU Premium - Gà Ta Già Ngon (Trống)',
+    name: 'Gà Trống Ta',
     price: 125000,
-    weight: '1.8 - 2.0 kg',
-    image: chickenSuper,
+    weight: '1.8 - 2.2 kg',
+    image: gaTrongTa,
     category: 'super',
     badge: 'Cao cấp',
-    description: 'Sản phẩm "gà ta ngon" Đảm bảo được độ dai ngon, thơm, da giòn, vàng óng hoặc đỏ, ít mỡ. Gà mái tỏ có ớm trứng chưa để thịt béo thơm. Phù hợp các món luộc, hấp, lẩu,...',
-    origin: 'Trang trại hữu cơ Gasach, nuôi tự nhiên với chế độ dinh dưỡng đặc biệt',
+    description: 'Gà trống ta già, thịt chắc ngon, thơm, da giòn, ít mỡ, thích hợp cho các món cao cấp',
+    origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
     storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
-    cooking: 'Phù hợp các món luộc, hấp, lẩu',
-  },
-  {
-    id: '5',
-    name: 'SKU Premium - Gà Ta Già Ngon (Mái)',
-    price: 135000,
-    weight: '1.5 - 1.8 kg',
-    image: chickenSuper,
-    category: 'super',
-    badge: 'Cao cấp',
-    description: 'Sản phẩm "gà ta ngon" Đảm bảo được độ dai ngon, thơm, da giòn, vàng óng hoặc đỏ, ít mỡ. Gà mái tỏ có ớm trứng chưa để thịt béo thơm. Phù hợp các món luộc, hấp, lẩu,...',
-    origin: 'Trang trại hữu cơ Gasach, nuôi tự nhiên với chế độ dinh dưỡng đặc biệt',
-    storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
-    cooking: 'Phù hợp các món luộc, hấp, lẩu',
+    cooking: 'Phù hợp với các món luộc, hấp, hầm, lẩu',
   },
 ];
 
