@@ -5,10 +5,8 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import logo from '@/assets/gasach-logo-new.png';
-
 const Footer = () => {
   const [email, setEmail] = useState('');
-
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
@@ -18,9 +16,7 @@ const Footer = () => {
       setEmail('');
     }
   };
-
-  return (
-    <footer className="bg-card border-t mt-20">
+  return <footer className="bg-card border-t mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -80,20 +76,14 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>64 Đào Trí Phú, P.Long Khánh (P.Xuân Thanh cũ), Đồng Nai</span>
+                <span>63C Đào Trí Phú, P.Long Khánh (P.Xuân Thanh cũ), Đồng Nai</span>
               </li>
             </ul>
             
             <form onSubmit={handleSubscribe} className="space-y-2">
               <h4 className="font-semibold text-sm">Nhận tin khuyến mãi</h4>
               <div className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Email của bạn"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <Input type="email" placeholder="Email của bạn" value={email} onChange={e => setEmail(e.target.value)} required />
                 <Button type="submit" className="bg-primary text-primary-foreground">
                   Đăng ký
                 </Button>
@@ -106,8 +96,6 @@ const Footer = () => {
           <p>&copy; 2024 Chicken Fresh - Gà Sạch. Tất cả quyền được bảo lưu.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
