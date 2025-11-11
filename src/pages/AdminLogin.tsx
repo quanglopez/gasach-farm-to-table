@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -97,6 +97,15 @@ const AdminLogin = () => {
             {isLoading ? 'Đang đăng nhập...' : 'Đăng Nhập'}
           </Button>
         </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            Chưa có tài khoản?{' '}
+            <Link to="/admin/signup" className="text-primary hover:underline font-medium">
+              Đăng ký ngay
+            </Link>
+          </p>
+        </div>
       </Card>
     </div>
   );

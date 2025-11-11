@@ -20,6 +20,7 @@ import Reviews from "./pages/Reviews";
 import Gallery from "./pages/Gallery";
 import OrderHistory from "./pages/OrderHistory";
 import AdminLogin from "./pages/AdminLogin";
+import AdminSignup from "./pages/AdminSignup";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
@@ -36,6 +37,7 @@ const App = () => (
             <Routes>
               {/* Admin Routes - No Header/Footer */}
               <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/signup" element={<AdminSignup />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               
               {/* Public Routes - With Header/Footer */}
