@@ -7,6 +7,9 @@ import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
+import farmChickens1 from '@/assets/farm-chickens-1.jpg';
+import farmChickens7 from '@/assets/farm-chickens-7.jpg';
+import chickenCooked from '@/assets/chicken-cooked.jpg';
 const Index = () => {
   const featuredProducts = products.slice(0, 3);
   return <div className="min-h-screen">
@@ -45,8 +48,99 @@ const Index = () => {
         </div>
       </section>
 
+      {/* From Farm to Table */}
+      <section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-accent text-accent-foreground">
+              Hành Trình Từ Trang Trại
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Từ <span className="text-primary">Trang Trại</span> Đến <span className="text-accent">Nhà Bạn</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Mỗi con gà đều trải qua hành trình được chăm sóc tận tâm, từ trang trại xanh mát đến bữa cơm sum vầy của gia đình bạn
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {/* Farm Section */}
+            <Card className="overflow-hidden card-hover group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={farmChickens7}
+                  alt="Gà trong trang trại"
+                  className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">🌿 Trong Trang Trại</h3>
+                  <p className="text-white/90">
+                    Gà được chăn thả tự nhiên trong môi trường rộng rãi, thoáng mát với cỏ xanh tươi
+                  </p>
+                </div>
+              </div>
+              <div className="p-6 bg-card">
+                <ul className="space-y-2">
+                  {[
+                    'Chăn thả tự do, vận động nhiều',
+                    'Thức ăn tự nhiên, không hóa chất',
+                    'Chăm sóc tận tâm hàng ngày',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+
+            {/* Table Section */}
+            <Card className="overflow-hidden card-hover group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={chickenCooked}
+                  alt="Gà trên mâm cơm"
+                  className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">🍽️ Trên Mâm Cơm</h3>
+                  <p className="text-white/90">
+                    Món ăn thơm ngon, bổ dưỡng cho bữa cơm gia đình sum vầy và hạnh phúc
+                  </p>
+                </div>
+              </div>
+              <div className="p-6 bg-card">
+                <ul className="space-y-2">
+                  {[
+                    'Thịt thơm ngon, dai ngọt tự nhiên',
+                    'An toàn tuyệt đối cho sức khỏe',
+                    'Mang hạnh phúc đến gia đình',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          </div>
+
+          <div className="text-center mt-8">
+            <Link to="/gallery">
+              <Button size="lg" variant="outline">
+                Xem Thêm Hình Ảnh <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Value Proposition */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
+      <section className="py-12 md:py-16 lg:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
             Tại Sao Chọn <span className="text-gradient">Gà Sạch</span>?

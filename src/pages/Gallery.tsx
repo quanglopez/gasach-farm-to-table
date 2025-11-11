@@ -7,8 +7,41 @@ import chickenTexture from '@/assets/chicken-texture.jpg';
 import chickenParts from '@/assets/chicken-parts.jpg';
 import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
 import chickenCooked from '@/assets/chicken-cooked.jpg';
+import farmChickens1 from '@/assets/farm-chickens-1.jpg';
+import farmChickens2 from '@/assets/farm-chickens-2.jpg';
+import farmChickens3 from '@/assets/farm-chickens-3.jpg';
+import farmChickens4 from '@/assets/farm-chickens-4.jpg';
+import farmChickens5 from '@/assets/farm-chickens-5.jpg';
+import farmChickens6 from '@/assets/farm-chickens-6.jpg';
+import farmChickens7 from '@/assets/farm-chickens-7.jpg';
+import farmChickens8 from '@/assets/farm-chickens-8.jpg';
+import farmChickens9 from '@/assets/farm-chickens-9.jpg';
+
+const farmGalleryImages = [
+  farmChickens1,
+  farmChickens2,
+  farmChickens3,
+  farmChickens4,
+  farmChickens5,
+  farmChickens6,
+  farmChickens7,
+  farmChickens8,
+  farmChickens9,
+];
 
 const galleryItems = [
+  {
+    id: 'farm',
+    title: 'Trong Trang Trại Gasach',
+    images: farmGalleryImages,
+    description: 'Khám phá môi trường nuôi gà tự nhiên tại trang trại Gasach. Gà được chăn thả tự do trong không gian rộng rãi, thoáng mát, với cỏ xanh tươi và không gian sống lý tưởng. Đây là nơi những chú gà khỏe mạnh được chăm sóc tận tình, tạo nên chất lượng thịt gà sạch tuyệt vời.',
+    features: [
+      'Diện tích rộng, không gian thoáng đãng',
+      'Gà chăn thả tự nhiên, vận động tự do',
+      'Môi trường sạch sẽ, cỏ xanh tươi',
+      'Chăm sóc tận tâm theo tiêu chuẩn',
+    ],
+  },
   {
     id: 'texture',
     title: 'Thớ Thịt Chi Tiết',
@@ -85,16 +118,35 @@ const Gallery = () => {
               }`}
             >
               <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                <Card className="overflow-hidden card-hover group">
-                  <div className="relative aspect-square overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item.images ? (
+                  // Multi-image grid for farm section
+                  <div className="grid grid-cols-2 gap-4">
+                    {item.images.slice(0, 4).map((img, idx) => (
+                      <Card key={idx} className="overflow-hidden card-hover group">
+                        <div className="relative aspect-square overflow-hidden">
+                          <img
+                            src={img}
+                            alt={`${item.title} - Ảnh ${idx + 1}`}
+                            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                      </Card>
+                    ))}
                   </div>
-                </Card>
+                ) : (
+                  // Single image for other sections
+                  <Card className="overflow-hidden card-hover group">
+                    <div className="relative aspect-square overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </Card>
+                )}
               </div>
 
               <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
