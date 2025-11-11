@@ -7,20 +7,13 @@ import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
-
 const Index = () => {
   const featuredProducts = products.slice(0, 3);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[500px] md:h-[600px] lg:h-[700px] flex items-center overflow-hidden bg-background">
         <div className="absolute inset-0">
-          <img
-            src={heroChicken}
-            alt="Gà sạch tươi ngon"
-            className="w-full h-full object-cover"
-          />
+          <img src={heroChicken} alt="Gà sạch tươi ngon" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         </div>
         
@@ -30,7 +23,7 @@ const Index = () => {
               ✨ 100% Tự Nhiên
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white drop-shadow-lg">
-              Gà Sạch Cho <span className="text-primary drop-shadow-lg">Bữa Cơm Gia Đình</span>{' '}
+              Gà Sạch Cho <span className="drop-shadow-lg text-slate-50">Bữa Cơm Gia Đình</span>{' '}
               <span className="text-secondary drop-shadow-lg">Sum Vầy Và Hạnh Phúc!</span>
             </h1>
             <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-white/90 leading-relaxed drop-shadow-md">
@@ -60,36 +53,29 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              {
-                icon: Leaf,
-                title: 'Gà Nuôi Tự Nhiên 100%',
-                description: 'Gà được nuôi thả vườn trong môi trường tự nhiên, ăn bắp và cám sạch, giúp thịt săn chắc, thơm ngon và đảm bảo an toàn tuyệt đối cho sức khỏe',
-              },
-              {
-                icon: Shield,
-                title: 'Không Chất Tăng Trọng – Không Kháng Sinh',
-                description: 'Tuyệt đối nói không với chất tăng trọng, không sử dụng kháng sinh trong suốt quá trình nuôi. Mỗi con gà đều được kiểm tra chất lượng kỹ lưỡng',
-              },
-              {
-                icon: Award,
-                title: 'Nguồn Gốc Minh Bạch – Giá Cả Phù Hợp',
-                description: 'Minh bạch nguồn gốc từ trang trại tới tay khách hàng, truy xuất dễ dàng. Giá bán luôn hợp lý, bình ổn, gần sát với giá thị trường truyền thống',
-              },
-              {
-                icon: Check,
-                title: 'Dịch Vụ Khách Hàng Chu Đáo',
-                description: 'Đội ngũ luôn đồng hành và hỗ trợ nhiệt tình, giúp quý khách có trải nghiệm nhanh chóng, tiện lợi và hài lòng tuyệt đối',
-              },
-            ].map((item, index) => (
-              <Card key={index} className="p-5 md:p-6 text-center card-hover card-glass border-2">
+            {[{
+            icon: Leaf,
+            title: 'Gà Nuôi Tự Nhiên 100%',
+            description: 'Gà được nuôi thả vườn trong môi trường tự nhiên, ăn bắp và cám sạch, giúp thịt săn chắc, thơm ngon và đảm bảo an toàn tuyệt đối cho sức khỏe'
+          }, {
+            icon: Shield,
+            title: 'Không Chất Tăng Trọng – Không Kháng Sinh',
+            description: 'Tuyệt đối nói không với chất tăng trọng, không sử dụng kháng sinh trong suốt quá trình nuôi. Mỗi con gà đều được kiểm tra chất lượng kỹ lưỡng'
+          }, {
+            icon: Award,
+            title: 'Nguồn Gốc Minh Bạch – Giá Cả Phù Hợp',
+            description: 'Minh bạch nguồn gốc từ trang trại tới tay khách hàng, truy xuất dễ dàng. Giá bán luôn hợp lý, bình ổn, gần sát với giá thị trường truyền thống'
+          }, {
+            icon: Check,
+            title: 'Dịch Vụ Khách Hàng Chu Đáo',
+            description: 'Đội ngũ luôn đồng hành và hỗ trợ nhiệt tình, giúp quý khách có trải nghiệm nhanh chóng, tiện lợi và hài lòng tuyệt đối'
+          }].map((item, index) => <Card key={index} className="p-5 md:p-6 text-center card-hover card-glass border-2">
                 <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3 md:mb-4 shadow-[var(--shadow-soft)]">
                   <item.icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                 </div>
                 <h3 className="text-lg md:text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{item.description}</p>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -108,9 +94,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
+            {featuredProducts.map(product => <ProductCard key={product.id} {...product} />)}
           </div>
           
           <div className="text-center">
@@ -131,20 +115,29 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Chọn Giống', desc: 'Giống gà ta thuần chủng, khỏe mạnh' },
-              { step: '02', title: 'Nuôi Dưỡng', desc: 'Chăn thả tự nhiên, thức ăn hữu cơ' },
-              { step: '03', title: 'Kiểm Tra', desc: 'Kiểm soát chất lượng nghiêm ngặt' },
-              { step: '04', title: 'Giao Hàng', desc: 'Đóng gói cẩn thận, giao tận nơi' },
-            ].map((item, index) => (
-              <div key={index} className="text-center">
+            {[{
+            step: '01',
+            title: 'Chọn Giống',
+            desc: 'Giống gà ta thuần chủng, khỏe mạnh'
+          }, {
+            step: '02',
+            title: 'Nuôi Dưỡng',
+            desc: 'Chăn thả tự nhiên, thức ăn hữu cơ'
+          }, {
+            step: '03',
+            title: 'Kiểm Tra',
+            desc: 'Kiểm soát chất lượng nghiêm ngặt'
+          }, {
+            step: '04',
+            title: 'Giao Hàng',
+            desc: 'Đóng gói cẩn thận, giao tận nơi'
+          }].map((item, index) => <div key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary text-primary-foreground text-2xl font-bold mb-4">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-muted-foreground">{item.desc}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -154,11 +147,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <img
-                src={farmImage}
-                alt="Trang trại Gasach"
-                className="rounded-2xl shadow-2xl"
-              />
+              <img src={farmImage} alt="Trang trại Gasach" className="rounded-2xl shadow-2xl" />
             </div>
             <div>
               <Badge className="mb-4 bg-secondary text-secondary-foreground">
@@ -173,16 +162,10 @@ const Index = () => {
                 và chăm sóc kỹ lưỡng.
               </p>
               <ul className="space-y-3 mb-8">
-                {[
-                  'Nguồn nước sạch từ giếng khoan sâu',
-                  'Thức ăn hữu cơ, không hoá chất',
-                  'Đội ngũ Chuyên nghiệp, có kỹ năng nghiệp vụ về gia cầm',
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                {['Nguồn nước sạch từ giếng khoan sâu', 'Thức ăn hữu cơ, không hoá chất', 'Đội ngũ Chuyên nghiệp, có kỹ năng nghiệp vụ về gia cầm'].map((item, index) => <li key={index} className="flex items-start gap-3">
                     <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
                     <span className="text-lg">{item}</span>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
               <Link to="/about">
                 <Button size="lg" variant="outline">
@@ -209,9 +192,7 @@ const Index = () => {
             <Card className="p-6 text-center">
               <div className="text-4xl font-bold text-accent mb-2">5.0</div>
               <div className="flex gap-1 justify-center mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-accent text-xl">★</span>
-                ))}
+                {[...Array(5)].map((_, i) => <span key={i} className="text-accent text-xl">★</span>)}
               </div>
               <p className="text-sm text-muted-foreground">Đánh giá trung bình</p>
             </Card>
@@ -234,38 +215,28 @@ const Index = () => {
           
           {/* Testimonials */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Chị Mai Phương',
-                location: 'Long Khánh, Đồng Nai',
-                rating: 5,
-                date: '05/11/2025',
-                comment:
-                  'Gia đình mình mua gà của Gasach được gần 1 năm rồi. Chất lượng luôn ổn định, thịt gà thơm ngon, da vàng óng. Đặc biệt là dịch vụ giao hàng rất nhanh, gà luôn tươi. Giá cả hợp lý, cả nhà rất hài lòng!',
-              },
-              {
-                name: 'Anh Thanh Tùng',
-                location: 'Long Khánh, Đồng Nai',
-                rating: 5,
-                date: '08/11/2025',
-                comment:
-                  'Mình đã thử nhiều nơi bán gà sạch nhưng chỉ có Gasach là ưng ý nhất. Gà nuôi tự nhiên nên thịt dai, ngọt và rất thơm. Nấu phở hay luộc đều ngon. Nhân viên tư vấn nhiệt tình, đóng gói cẩn thận!',
-              },
-              {
-                name: 'Chị Ngọc Hân',
-                location: 'Biên Hòa, Đồng Nai',
-                rating: 5,
-                date: '12/11/2025',
-                comment:
-                  'Lần đầu đặt mua nhưng rất hài lòng với chất lượng. Gà tươi, sạch sẽ, không mùi. Bữa cơm gia đình ngon hơn hẳn khi dùng gà của Gasach. Chắc chắn sẽ ủng hộ lâu dài!',
-              },
-            ].map((testimonial, index) => (
-              <Card key={index} className="p-6">
+            {[{
+            name: 'Chị Mai Phương',
+            location: 'Long Khánh, Đồng Nai',
+            rating: 5,
+            date: '05/11/2025',
+            comment: 'Gia đình mình mua gà của Gasach được gần 1 năm rồi. Chất lượng luôn ổn định, thịt gà thơm ngon, da vàng óng. Đặc biệt là dịch vụ giao hàng rất nhanh, gà luôn tươi. Giá cả hợp lý, cả nhà rất hài lòng!'
+          }, {
+            name: 'Anh Thanh Tùng',
+            location: 'Long Khánh, Đồng Nai',
+            rating: 5,
+            date: '08/11/2025',
+            comment: 'Mình đã thử nhiều nơi bán gà sạch nhưng chỉ có Gasach là ưng ý nhất. Gà nuôi tự nhiên nên thịt dai, ngọt và rất thơm. Nấu phở hay luộc đều ngon. Nhân viên tư vấn nhiệt tình, đóng gói cẩn thận!'
+          }, {
+            name: 'Chị Ngọc Hân',
+            location: 'Biên Hòa, Đồng Nai',
+            rating: 5,
+            date: '12/11/2025',
+            comment: 'Lần đầu đặt mua nhưng rất hài lòng với chất lượng. Gà tươi, sạch sẽ, không mùi. Bữa cơm gia đình ngon hơn hẳn khi dùng gà của Gasach. Chắc chắn sẽ ủng hộ lâu dài!'
+          }].map((testimonial, index) => <Card key={index} className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-accent text-xl">★</span>
-                    ))}
+                    {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-accent text-xl">★</span>)}
                   </div>
                   <span className="text-sm text-muted-foreground">{testimonial.date}</span>
                 </div>
@@ -274,8 +245,7 @@ const Index = () => {
                   <p className="font-bold">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.location}</p>
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           <div className="text-center mt-8">
@@ -310,8 +280,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
