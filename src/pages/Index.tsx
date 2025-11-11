@@ -34,8 +34,7 @@ const Index = () => {
               <span className="text-secondary">Sum Vầy Và Hạnh Phúc!</span>
             </h1>
             <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-muted-foreground leading-relaxed">
-              Gà ta tươi ngon, nuôi tự nhiên, không chất tăng trọng, không kháng sinh độc hại.
-              Giúp bữa nấu nướng đơn giản - tiện lợi, mang đến sự ấm áp cho mỗi bữa ăn gia đình.
+              Mang sự tiện lợi và sạch vào bữa cơm việt, cam kết giá cả tốt nhất thị trường, từ đó đảm bảo sức khoẻ giúp cho "mâm cơm nhà" sum vầy và hạnh phúc.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link to="/products" className="w-full sm:w-auto">
