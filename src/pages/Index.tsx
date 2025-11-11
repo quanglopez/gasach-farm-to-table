@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/carousel';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import LazyImage from '@/components/LazyImage';
 import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
@@ -19,13 +21,24 @@ import farmChickens7 from '@/assets/farm-chickens-7.jpg';
 import farmChickens8 from '@/assets/farm-chickens-8.jpg';
 import farmChickens9 from '@/assets/farm-chickens-9.jpg';
 import tableMeal1 from '@/assets/table-meal-1.jpg';
+
 const Index = () => {
   const featuredProducts = products.slice(0, 3);
+  const { ref: farmRef, isVisible: farmVisible } = useScrollAnimation();
+  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
+  const { ref: productsRef, isVisible: productsVisible } = useScrollAnimation();
+  const { ref: processRef, isVisible: processVisible } = useScrollAnimation();
+  const { ref: farmImagesRef, isVisible: farmImagesVisible } = useScrollAnimation();
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[500px] md:h-[600px] lg:h-[700px] flex items-center overflow-hidden bg-background">
         <div className="absolute inset-0">
-          <img src={heroChicken} alt="Gà sạch tươi ngon" className="w-full h-full object-cover" />
+          <LazyImage 
+            src={heroChicken} 
+            alt="Gà sạch tươi ngon" 
+            className="w-full h-full object-cover" 
+            eager
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         </div>
         
@@ -58,9 +71,9 @@ const Index = () => {
       </section>
 
       {/* From Farm to Table */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/30">
+      <section ref={farmRef} className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className={`text-center mb-12 transition-all duration-700 ${farmVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             <Badge className="mb-4 bg-accent text-accent-foreground">
               Hành Trình Từ Trang Trại
             </Badge>
@@ -74,9 +87,9 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Farm Section */}
-            <Card className="overflow-hidden card-hover group">
+            <Card className={`overflow-hidden card-hover group hover-lift transition-all duration-700 ${farmVisible ? 'animate-slide-in-left' : 'opacity-0'}`}>
               <div className="relative aspect-[4/3] overflow-hidden">
-                <img
+                <LazyImage
                   src={farmChickens7}
                   alt="Gà trong trang trại"
                   className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
@@ -106,9 +119,9 @@ const Index = () => {
             </Card>
 
             {/* Table Section */}
-            <Card className="overflow-hidden card-hover group">
+            <Card className={`overflow-hidden card-hover group hover-lift transition-all duration-700 ${farmVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
               <div className="relative aspect-[4/3] overflow-hidden">
-                <img
+                <LazyImage
                   src={tableMeal1}
                   alt="Gà trên mâm cơm"
                   className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
@@ -149,9 +162,9 @@ const Index = () => {
       </section>
 
       {/* Value Proposition */}
-      <section className="py-12 md:py-16 lg:py-20 bg-muted/30">
+      <section ref={valuesRef} className="py-12 md:py-16 lg:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 transition-all duration-700 ${valuesVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             Tại Sao Chọn <span className="text-gradient">Gà Sạch</span>?
           </h2>
           
@@ -172,7 +185,7 @@ const Index = () => {
             icon: Check,
             title: 'Dịch Vụ Khách Hàng Chu Đáo',
             description: 'Đội ngũ luôn đồng hành và hỗ trợ nhiệt tình, giúp quý khách có trải nghiệm nhanh chóng, tiện lợi và hài lòng tuyệt đối'
-          }].map((item, index) => <Card key={index} className="p-5 md:p-6 text-center card-hover card-glass border-2">
+          }].map((item, index) => <Card key={index} className={`p-5 md:p-6 text-center card-hover card-glass border-2 hover-lift transition-all duration-700 ${valuesVisible ? 'animate-zoom-in' : 'opacity-0'}`} style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3 md:mb-4 shadow-[var(--shadow-soft)]">
                   <item.icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                 </div>
@@ -184,9 +197,9 @@ const Index = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20">
+      <section ref={productsRef} className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className={`text-center mb-12 transition-all duration-700 ${productsVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             <h2 className="text-4xl font-bold mb-4">Sản Phẩm Nổi Bật</h2>
             <p className="text-xl text-muted-foreground mb-2">
               Chọn lựa gà sạch chất lượng cao cho gia đình bạn
@@ -197,7 +210,15 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {featuredProducts.map(product => <ProductCard key={product.id} {...product} />)}
+            {featuredProducts.map((product, idx) => (
+              <div
+                key={product.id}
+                className={`transition-all duration-700 ${productsVisible ? 'animate-zoom-in' : 'opacity-0'}`}
+                style={{ animationDelay: `${idx * 150}ms` }}
+              >
+                <ProductCard {...product} />
+              </div>
+            ))}
           </div>
           
           <div className="text-center">
@@ -211,9 +232,9 @@ const Index = () => {
       </section>
 
       {/* Process Timeline */}
-      <section className="py-20 bg-muted/30">
+      <section ref={processRef} className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className={`text-4xl font-bold text-center mb-12 transition-all duration-700 ${processVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             Quy Trình Nuôi Gà <span className="text-primary">Sạch</span>
           </h2>
           
@@ -234,7 +255,7 @@ const Index = () => {
             step: '04',
             title: 'Giao Hàng',
             desc: 'Đóng gói cẩn thận, giao tận nơi'
-          }].map((item, index) => <div key={index} className="text-center">
+          }].map((item, index) => <div key={index} className={`text-center transition-all duration-700 ${processVisible ? 'animate-zoom-in' : 'opacity-0'}`} style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary text-primary-foreground text-2xl font-bold mb-4">
                   {item.step}
                 </div>
@@ -246,15 +267,15 @@ const Index = () => {
       </section>
 
       {/* Farm Image */}
-      <section className="py-20">
+      <section ref={farmImagesRef} className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className={`transition-all duration-700 ${farmImagesVisible ? 'animate-slide-in-left' : 'opacity-0'}`}>
               <Carousel className="w-full">
                 <CarouselContent>
                   {[farmChickens1, farmChickens7, farmChickens8, farmChickens9].map((img, idx) => (
                     <CarouselItem key={idx}>
-                      <img 
+                      <LazyImage 
                         src={img} 
                         alt={`Trang trại Gasach - Ảnh ${idx + 1}`} 
                         className="rounded-2xl shadow-2xl w-full h-auto object-cover" 
@@ -266,7 +287,7 @@ const Index = () => {
                 <CarouselNext className="right-4" />
               </Carousel>
             </div>
-            <div>
+            <div className={`transition-all duration-700 ${farmImagesVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
               <Badge className="mb-4 bg-secondary text-secondary-foreground">
                 Trang Trại Của Chúng Tôi
               </Badge>

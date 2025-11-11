@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
+import LazyImage from '@/components/LazyImage';
 
 interface ProductCardProps {
   id: string;
@@ -24,12 +25,13 @@ const ProductCard = ({ id, name, price, weight, image, badge }: ProductCardProps
 
   return (
     <Link to={`/products/${id}`}>
-      <Card className="overflow-hidden card-hover cursor-pointer group border-2 hover:border-primary/20">
+      <Card className="overflow-hidden card-hover cursor-pointer group border-2 hover:border-primary/20 hover-lift">
         <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-muted to-muted/50">
-          <img
+          <LazyImage
             src={image}
             alt={name}
             className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-1"
+            skeletonClassName="aspect-square"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           {badge && (

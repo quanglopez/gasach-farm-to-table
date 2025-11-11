@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import { ProductGridSkeleton } from '@/components/LoadingSkeleton';
+import LazyImage from '@/components/LazyImage';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import chickenTexture from '@/assets/chicken-texture.jpg';
 import chickenParts from '@/assets/chicken-parts.jpg';
 import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
@@ -43,9 +46,18 @@ const productCategories = [
 
 const Products = () => {
   const [filter, setFilter] = useState<'all' | 'regular' | 'premium' | 'super'>('all');
+  const [isLoading, setIsLoading] = useState(true);
+  const { ref: categoriesRef, isVisible: categoriesVisible } = useScrollAnimation();
+  const { ref: productsRef, isVisible: productsVisible } = useScrollAnimation();
 
   const filteredProducts =
     filter === 'all' ? products : products.filter((p) => p.category === filter);
+
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [filter]);
 
   return (
     <div className="min-h-screen py-12">
@@ -60,16 +72,21 @@ const Products = () => {
         </div>
 
         {/* Product Categories with Images */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">
+        <div ref={categoriesRef} className="mb-16">
+          <h2 className={`text-3xl font-bold text-center mb-8 transition-all duration-700 ${categoriesVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             Khám Phá <span className="text-primary">Chi Tiết Sản Phẩm</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {productCategories.map((category) => (
+            {productCategories.map((category, idx) => (
               <Link key={category.id} to={category.link}>
-                <Card className="overflow-hidden card-hover cursor-pointer group h-full">
+                <Card 
+                  className={`overflow-hidden card-hover cursor-pointer group h-full hover-lift transition-all duration-700 ${
+                    categoriesVisible ? 'animate-zoom-in' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
                   <div className="relative aspect-square overflow-hidden">
-                    <img
+                    <LazyImage
                       src={category.image}
                       alt={category.title}
                       className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
@@ -121,17 +138,31 @@ const Products = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
-        </div>
+        <div ref={productsRef}>
+          {isLoading ? (
+            <ProductGridSkeleton count={6} />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map((product, idx) => (
+                <div
+                  key={product.id}
+                  className={`transition-all duration-700 ${
+                    productsVisible ? 'animate-slide-in-bottom' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <ProductCard {...product} />
+                </div>
+              ))}
+            </div>
+          )}
 
-        {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-muted-foreground">Không tìm thấy sản phẩm nào.</p>
-          </div>
-        )}
+          {!isLoading && filteredProducts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-xl text-muted-foreground">Không tìm thấy sản phẩm nào.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
