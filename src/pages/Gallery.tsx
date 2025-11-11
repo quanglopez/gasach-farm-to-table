@@ -11,9 +11,6 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import chickenTexture from '@/assets/chicken-texture.jpg';
-import chickenParts from '@/assets/chicken-parts.jpg';
-import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
-import chickenCooked from '@/assets/chicken-cooked.jpg';
 import textureDetail1 from '@/assets/texture-detail-1.jpg';
 import textureDetail2 from '@/assets/texture-detail-2.jpg';
 import textureDetail3 from '@/assets/texture-detail-3.jpg';
@@ -84,42 +81,6 @@ const galleryItems = [
     ],
   },
   {
-    id: 'parts',
-    title: 'Lóc Thịt Phần Đùi & Cánh',
-    image: chickenParts,
-    description: 'Phần đùi và cánh gà được lóc thịt cẩn thận, giữ nguyên độ tươi ngon. Đây là những phần thịt được ưa chuộng nhất với độ ngọt tự nhiên và thịt săn chắc, phù hợp cho nhiều món ăn.',
-    features: [
-      'Thịt đùi săn chắc, không mỡ dư thừa',
-      'Cánh gà da vàng óng, giòn giòn',
-      'Đã lóc xương sẵn, tiện lợi chế biến',
-      'Phù hợp cho chiên, nướng, kho',
-    ],
-  },
-  {
-    id: 'whole-raw',
-    title: 'Gà Nguyên Con Tươi',
-    image: chickenWholeRaw,
-    description: 'Gà ta nguyên con tươi sống với da vàng óng tự nhiên, thịt săn chắc. Nuôi tự nhiên trong môi trường sạch sẽ, không sử dụng chất tăng trọng hay kháng sinh độc hại.',
-    features: [
-      'Da vàng óng ánh tự nhiên',
-      'Trọng lượng đạt chuẩn từ 1.5-2.2kg',
-      'Thịt săn chắc, không bở nhão',
-      'Hoàn hảo cho món luộc, hấp, nấu phở',
-    ],
-  },
-  {
-    id: 'cooked',
-    title: 'Gà Sau Khi Chế Biến',
-    image: chickenCooked,
-    description: 'Gà sau khi chế biến với da giòn vàng ươm, thịt thơm ngon hấp dẫn. Đây là kết quả khi bạn sử dụng gà sạch chất lượng cao từ Gasach - mang đến bữa cơm gia đình sum vầy và hạnh phúc.',
-    features: [
-      'Da giòn tan, vàng ươm đẹp mắt',
-      'Thịt mềm mại, thơm ngon tự nhiên',
-      'Giữ nguyên giá trị dinh dưỡng',
-      'Hương vị đậm đà, đặc trưng gà ta',
-    ],
-  },
-  {
     id: 'table',
     title: 'Trên Mâm Cơm Gia Đình',
     images: tableMealImages,
@@ -159,44 +120,29 @@ const Gallery = () => {
               }`}
             >
               <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                {item.images ? (
-                  // Carousel for multi-image sections
-                  <Carousel className="w-full">
-                    <CarouselContent>
-                      {item.images.map((img, idx) => (
-                        <CarouselItem key={idx} className="md:basis-1/2">
-                          <Card className="overflow-hidden card-hover group">
-                            <div className="relative aspect-square overflow-hidden">
-                              <img
-                                src={img}
-                                alt={`${item.title} - Ảnh ${idx + 1}`}
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
-                                {idx + 1}/{item.images.length}
-                              </div>
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {item.images.map((img, idx) => (
+                      <CarouselItem key={idx} className="md:basis-1/2">
+                        <Card className="overflow-hidden card-hover group">
+                          <div className="relative aspect-square overflow-hidden">
+                            <img
+                              src={img}
+                              alt={`${item.title} - Ảnh ${idx + 1}`}
+                              className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+                              {idx + 1}/{item.images.length}
                             </div>
-                          </Card>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-2" />
-                    <CarouselNext className="right-2" />
-                  </Carousel>
-                ) : (
-                  // Single image for other sections
-                  <Card className="overflow-hidden card-hover group">
-                    <div className="relative aspect-square overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </Card>
-                )}
+                          </div>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
               </div>
 
               <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
