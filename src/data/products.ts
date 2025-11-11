@@ -8,6 +8,7 @@ import gaNuaCon3 from '@/assets/ga-nua-con-3.jpg';
 import gaNuaCon4 from '@/assets/ga-nua-con-4.jpg';
 import gaTrongTa from '@/assets/ga-trong-ta-1.jpg';
 import gaTrongTa2 from '@/assets/ga-trong-ta-hero.jpg';
+import comboLong from '@/assets/combo-long.jpg';
 
 export interface Product {
   id: string;
@@ -66,6 +67,20 @@ export const products: Product[] = [
     origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
     storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 2-3 ngày. Có thể đông lạnh (-18°C) để bảo quản lâu hơn.',
     cooking: 'Phù hợp với các món luộc, hấp, hầm, lẩu',
+  },
+  {
+    id: '4',
+    name: 'Combo Lòng',
+    price: 45000,
+    weight: '400 - 500g',
+    image: comboLong,
+    gallery: [comboLong],
+    category: 'regular',
+    badge: 'Ngon bổ rẻ',
+    description: 'Combo lòng gà bao gồm chân, gan, tim, dạ dày và các phần lòng khác. Tươi ngon, sạch sẽ, giàu dinh dưỡng',
+    origin: 'Trang trại Gasach, nuôi tự nhiên tại Hà Nội',
+    storage: 'Bảo quản trong ngăn mát tủ lạnh (0-4°C) trong 1-2 ngày. Nên sử dụng sớm để đảm bảo độ tươi ngon.',
+    cooking: 'Phù hợp với các món xào, lẩu, nướng, luộc. Có thể chế biến thành món nhậu hấp dẫn',
   },
 ];
 
