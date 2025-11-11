@@ -14,6 +14,9 @@ import chickenTexture from '@/assets/chicken-texture.jpg';
 import chickenParts from '@/assets/chicken-parts.jpg';
 import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
 import chickenCooked from '@/assets/chicken-cooked.jpg';
+import textureDetail1 from '@/assets/texture-detail-1.jpg';
+import textureDetail2 from '@/assets/texture-detail-2.jpg';
+import textureDetail3 from '@/assets/texture-detail-3.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
 import farmChickens2 from '@/assets/farm-chickens-2.jpg';
 import farmChickens3 from '@/assets/farm-chickens-3.jpg';
@@ -71,7 +74,7 @@ const galleryItems = [
   {
     id: 'texture',
     title: 'Thớ Thịt Chi Tiết',
-    image: chickenTexture,
+    images: [chickenTexture, textureDetail1, textureDetail2, textureDetail3],
     description: 'Xem chi tiết thớ thịt gà sạch tươi ngon với sợi thịt mịn màng, tự nhiên. Mỗi con gà đều được chọn lọc kỹ càng để đảm bảo chất lượng thịt tươi ngon nhất, không chất tăng trọng, không kháng sinh.',
     features: [
       'Sợi thịt mịn màng, đều đặn',
