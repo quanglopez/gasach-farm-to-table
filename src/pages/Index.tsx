@@ -3,12 +3,21 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Check, Leaf, Shield, Award, ArrowRight } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
 import farmChickens7 from '@/assets/farm-chickens-7.jpg';
+import farmChickens8 from '@/assets/farm-chickens-8.jpg';
+import farmChickens9 from '@/assets/farm-chickens-9.jpg';
 import tableMeal1 from '@/assets/table-meal-1.jpg';
 const Index = () => {
   const featuredProducts = products.slice(0, 3);
@@ -241,7 +250,21 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <img src={farmImage} alt="Trang trại Gasach" className="rounded-2xl shadow-2xl" />
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {[farmChickens1, farmChickens7, farmChickens8, farmChickens9].map((img, idx) => (
+                    <CarouselItem key={idx}>
+                      <img 
+                        src={img} 
+                        alt={`Trang trại Gasach - Ảnh ${idx + 1}`} 
+                        className="rounded-2xl shadow-2xl w-full h-auto object-cover" 
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4" />
+                <CarouselNext className="right-4" />
+              </Carousel>
             </div>
             <div>
               <Badge className="mb-4 bg-secondary text-secondary-foreground">
