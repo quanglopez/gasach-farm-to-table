@@ -16,6 +16,14 @@ import farmChickens6 from '@/assets/farm-chickens-6.jpg';
 import farmChickens7 from '@/assets/farm-chickens-7.jpg';
 import farmChickens8 from '@/assets/farm-chickens-8.jpg';
 import farmChickens9 from '@/assets/farm-chickens-9.jpg';
+import tableMeal1 from '@/assets/table-meal-1.jpg';
+import tableMeal2 from '@/assets/table-meal-2.jpg';
+import tableMeal3 from '@/assets/table-meal-3.jpg';
+import tableMeal4 from '@/assets/table-meal-4.jpg';
+import tableMeal5 from '@/assets/table-meal-5.jpg';
+import tableMeal6 from '@/assets/table-meal-6.jpg';
+import tableMeal7 from '@/assets/table-meal-7.jpg';
+import tableMeal8 from '@/assets/table-meal-8.jpg';
 
 const farmGalleryImages = [
   farmChickens1,
@@ -27,6 +35,17 @@ const farmGalleryImages = [
   farmChickens7,
   farmChickens8,
   farmChickens9,
+];
+
+const tableMealImages = [
+  tableMeal1,
+  tableMeal2,
+  tableMeal3,
+  tableMeal4,
+  tableMeal5,
+  tableMeal6,
+  tableMeal7,
+  tableMeal8,
 ];
 
 const galleryItems = [
@@ -82,12 +101,24 @@ const galleryItems = [
     id: 'cooked',
     title: 'Gà Sau Khi Chế Biến',
     image: chickenCooked,
-    description: 'Gà sau khi chế biến với da giòn vàng ươm, thịt thơm ngon hấp dẫn. Đây là kết quả khi bạn sử dụng gà sạch chất lượng cao từ Chicken Fresh - mang đến bữa cơm gia đình sum vầy và hạnh phúc.',
+    description: 'Gà sau khi chế biến với da giòn vàng ươm, thịt thơm ngon hấp dẫn. Đây là kết quả khi bạn sử dụng gà sạch chất lượng cao từ Gasach - mang đến bữa cơm gia đình sum vầy và hạnh phúc.',
     features: [
       'Da giòn tan, vàng ươm đẹp mắt',
       'Thịt mềm mại, thơm ngon tự nhiên',
       'Giữ nguyên giá trị dinh dưỡng',
       'Hương vị đậm đà, đặc trưng gà ta',
+    ],
+  },
+  {
+    id: 'table',
+    title: 'Trên Mâm Cơm Gia Đình',
+    images: tableMealImages,
+    description: 'Khoảnh khắc sum vầy bên mâm cơm với món gà sạch thơm ngon. Từ gà luộc truyền thống, gà xé phay, đến gà hấp - mỗi món ăn đều mang đến hương vị tự nhiên, đậm đà của gà ta, tạo nên bữa cơm gia đình ấm cúng và hạnh phúc.',
+    features: [
+      'Đa dạng cách chế biến: luộc, xé, hấp',
+      'Hương vị tự nhiên, thơm ngon đặc trưng',
+      'An toàn sức khỏe cho cả gia đình',
+      'Bữa cơm sum vầy, hạnh phúc trọn vẹn',
     ],
   },
 ];

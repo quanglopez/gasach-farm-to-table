@@ -9,7 +9,7 @@ import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
 import farmChickens7 from '@/assets/farm-chickens-7.jpg';
-import chickenCooked from '@/assets/chicken-cooked.jpg';
+import tableMeal1 from '@/assets/table-meal-1.jpg';
 const Index = () => {
   const featuredProducts = products.slice(0, 3);
   return <div className="min-h-screen">
@@ -100,7 +100,7 @@ const Index = () => {
             <Card className="overflow-hidden card-hover group">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={chickenCooked}
+                  src={tableMeal1}
                   alt="Gà trên mâm cơm"
                   className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
                 />
