@@ -14,26 +14,26 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[500px] md:h-[600px] lg:h-[700px] flex items-center gradient-hero overflow-hidden">
+      <section className="relative min-h-[500px] md:h-[600px] lg:h-[700px] flex items-center overflow-hidden bg-background">
         <div className="absolute inset-0">
           <img
             src={heroChicken}
             alt="Gà sạch tươi ngon"
-            className="w-full h-full object-cover mix-blend-overlay opacity-30"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         </div>
         
         <div className="container mx-auto px-4 py-12 md:py-0 relative z-10">
           <div className="max-w-2xl animate-fade-in">
-            <Badge className="mb-4 md:mb-6 bg-accent text-accent-foreground shadow-lg text-sm md:text-base px-4 py-1.5">
+            <Badge className="mb-4 md:mb-6 bg-white/90 text-foreground shadow-lg text-sm md:text-base px-4 py-1.5">
               ✨ 100% Tự Nhiên
             </Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              Gà Sạch Cho <span className="text-gradient">Bữa Cơm Gia Đình</span>{' '}
-              <span className="text-secondary">Sum Vầy Và Hạnh Phúc!</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white drop-shadow-lg">
+              Gà Sạch Cho <span className="text-primary drop-shadow-lg">Bữa Cơm Gia Đình</span>{' '}
+              <span className="text-secondary drop-shadow-lg">Sum Vầy Và Hạnh Phúc!</span>
             </h1>
-            <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-white/90 leading-relaxed drop-shadow-md">
               Mang sự tiện lợi và sạch vào bữa cơm việt, cam kết giá cả tốt nhất thị trường, từ đó đảm bảo sức khoẻ giúp cho "mâm cơm nhà" sum vầy và hạnh phúc.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
