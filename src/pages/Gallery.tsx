@@ -3,6 +3,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import chickenTexture from '@/assets/chicken-texture.jpg';
 import chickenParts from '@/assets/chicken-parts.jpg';
 import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
@@ -150,21 +157,30 @@ const Gallery = () => {
             >
               <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                 {item.images ? (
-                  // Multi-image grid for farm section
-                  <div className="grid grid-cols-2 gap-4">
-                    {item.images.slice(0, 4).map((img, idx) => (
-                      <Card key={idx} className="overflow-hidden card-hover group">
-                        <div className="relative aspect-square overflow-hidden">
-                          <img
-                            src={img}
-                            alt={`${item.title} - Ảnh ${idx + 1}`}
-                            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
+                  // Carousel for multi-image sections
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {item.images.map((img, idx) => (
+                        <CarouselItem key={idx} className="md:basis-1/2">
+                          <Card className="overflow-hidden card-hover group">
+                            <div className="relative aspect-square overflow-hidden">
+                              <img
+                                src={img}
+                                alt={`${item.title} - Ảnh ${idx + 1}`}
+                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+                                {idx + 1}/{item.images.length}
+                              </div>
+                            </div>
+                          </Card>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-2" />
+                    <CarouselNext className="right-2" />
+                  </Carousel>
                 ) : (
                   // Single image for other sections
                   <Card className="overflow-hidden card-hover group">
