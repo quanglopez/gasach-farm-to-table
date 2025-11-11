@@ -3,8 +3,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { UserPlus } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { UserPlus, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -24,41 +24,21 @@ export const AddAdminDialog = ({ onAdminAdded }: AddAdminDialogProps) => {
     
     try {
       emailSchema.parse(email);
-      setIsLoading(true);
-
-      // First, search for the user by email using auth.users
-      const { data: userData, error: userError } = await supabase
-        .rpc('get_user_id_by_email', { user_email: email });
-
-      if (userError) {
-        toast.error('Không tìm thấy người dùng với email này');
-        return;
-      }
-
-      if (!userData) {
-        toast.error('Người dùng chưa đăng ký tài khoản');
-        return;
-      }
-
-      // Add admin role
-      const { error: roleError } = await supabase
-        .rpc('add_admin_role', { target_user_id: userData });
-
-      if (roleError) throw roleError;
-
-      toast.success('Đã thêm admin thành công');
+      const userEmail = email;
       setEmail('');
       setOpen(false);
+      
+      toast.success(
+        `Hướng dẫn: Yêu cầu người dùng với email ${userEmail} đăng ký tài khoản tại /admin/signup. ` +
+        `Sau đó, vào Database → user_roles table để thêm role 'admin' cho user đó.`,
+        { duration: 10000 }
+      );
+      
       onAdminAdded();
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
-      } else {
-        console.error('Error adding admin:', error);
-        toast.error('Không thể thêm admin. Vui lòng thử lại.');
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -74,12 +54,25 @@ export const AddAdminDialog = ({ onAdminAdded }: AddAdminDialogProps) => {
         <DialogHeader>
           <DialogTitle>Thêm Quản Trị Viên Mới</DialogTitle>
           <DialogDescription>
-            Nhập email của người dùng đã đăng ký để cấp quyền admin
+            Hướng dẫn thêm admin mới vào hệ thống
           </DialogDescription>
         </DialogHeader>
+        
+        <Alert>
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="text-sm">
+            <strong>Cách thêm admin:</strong>
+            <ol className="list-decimal ml-4 mt-2 space-y-1">
+              <li>Yêu cầu người dùng đăng ký tại <code className="bg-muted px-1 rounded">/admin/signup</code></li>
+              <li>Vào Cloud → Database → user_roles table</li>
+              <li>Thêm row mới: user_id của họ và role = admin</li>
+            </ol>
+          </AlertDescription>
+        </Alert>
+
         <form onSubmit={handleAddAdmin} className="space-y-4">
           <div>
-            <Label htmlFor="admin-email">Email</Label>
+            <Label htmlFor="admin-email">Email (để ghi nhớ)</Label>
             <Input
               id="admin-email"
               type="email"
@@ -97,10 +90,10 @@ export const AddAdminDialog = ({ onAdminAdded }: AddAdminDialogProps) => {
               onClick={() => setOpen(false)}
               disabled={isLoading}
             >
-              Hủy
+              Đóng
             </Button>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Đang thêm...' : 'Thêm Admin'}
+              Xem Hướng Dẫn
             </Button>
           </div>
         </form>

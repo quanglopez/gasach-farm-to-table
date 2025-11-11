@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { AddAdminDialog } from '@/components/admin/AddAdminDialog';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { Package, DollarSign, ShoppingCart, TrendingUp, LogOut, RefreshCw } from 'lucide-react';
@@ -139,10 +140,13 @@ const AdminDashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-            <Button variant="outline" onClick={handleSignOut}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Đăng Xuất
-            </Button>
+            <div className="flex gap-2">
+              <AddAdminDialog onAdminAdded={() => {}} />
+              <Button variant="outline" onClick={handleSignOut}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Đăng Xuất
+              </Button>
+            </div>
           </div>
         </div>
       </header>

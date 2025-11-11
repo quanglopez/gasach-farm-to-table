@@ -151,6 +151,7 @@ export type Database = {
     }
     Functions: {
       add_admin_role: { Args: { target_user_id: string }; Returns: undefined }
+      get_user_id_by_email: { Args: { user_email: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
