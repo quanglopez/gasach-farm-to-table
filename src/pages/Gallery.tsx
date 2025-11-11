@@ -243,7 +243,7 @@ const Gallery = () => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+              <Button size="lg" variant="accent">
                 Liên Hệ Tư Vấn
               </Button>
             </Link>
