@@ -33,24 +33,6 @@ const Promotions = () => {
       icon: Gift,
       color: 'bg-primary',
     },
-    {
-      id: 2,
-      title: 'Mua 2 Tặng 1',
-      desc: 'Mua 2 con Gà Thường tặng ngay 1 kg rau sạch hữu cơ',
-      code: 'BUY2GET1',
-      validUntil: '30/11/2024',
-      icon: Tag,
-      color: 'bg-accent',
-    },
-    {
-      id: 3,
-      title: 'Giảm 15% Cho Combo',
-      desc: 'Giảm 15% khi mua combo 2 con trở lên. Áp dụng cho tất cả dòng sản phẩm',
-      code: 'COMBO15',
-      validUntil: '15/12/2024',
-      icon: Percent,
-      color: 'bg-secondary',
-    },
   ];
 
   const upcomingPromotions = [
@@ -85,7 +67,7 @@ const Promotions = () => {
         <div className="mb-20">
           <h2 className="text-3xl font-bold mb-8">Khuyến Mãi Đang Diễn Ra</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-md mx-auto">
             {currentPromotions.map((promo) => (
               <Card key={promo.id} className="overflow-hidden">
                 <div className={`${promo.color} text-white p-6`}>

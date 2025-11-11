@@ -4,10 +4,22 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, Tag, X } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { validatePromoCode, calculateDiscount, type PromoCode } from '@/data/promoCodes';
+import { z } from 'zod';
+
+// Form validation schema
+const orderFormSchema = z.object({
+  name: z.string().trim().min(1, { message: "Vui lòng nhập họ tên" }).max(100, { message: "Họ tên không được quá 100 ký tự" }),
+  phone: z.string().trim().min(10, { message: "Số điện thoại không hợp lệ" }).max(15, { message: "Số điện thoại không hợp lệ" }),
+  address: z.string().trim().min(10, { message: "Vui lòng nhập địa chỉ chi tiết" }).max(500, { message: "Địa chỉ không được quá 500 ký tự" }),
+  note: z.string().max(500, { message: "Ghi chú không được quá 500 ký tự" }).optional(),
+});
+
+const promoCodeSchema = z.string().trim().max(20, { message: "Mã khuyến mãi không hợp lệ" });
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -18,6 +30,60 @@ const Cart = () => {
     address: '',
     note: '',
   });
+  
+  const [promoCodeInput, setPromoCodeInput] = useState('');
+  const [appliedPromoCode, setAppliedPromoCode] = useState<PromoCode | null>(null);
+  const [isApplyingPromo, setIsApplyingPromo] = useState(false);
+
+  const subtotal = total;
+  const discount = calculateDiscount(subtotal, appliedPromoCode);
+  const finalTotal = subtotal - discount;
+
+  const handleApplyPromoCode = () => {
+    try {
+      // Validate input length and format
+      const validatedInput = promoCodeSchema.parse(promoCodeInput);
+      
+      if (!validatedInput) {
+        toast.error('Vui lòng nhập mã khuyến mãi');
+        return;
+      }
+
+      setIsApplyingPromo(true);
+
+      const promoCode = validatePromoCode(validatedInput);
+      
+      if (!promoCode) {
+        toast.error('Mã khuyến mãi không hợp lệ hoặc đã hết hạn');
+        setIsApplyingPromo(false);
+        return;
+      }
+
+      // Check minimum order requirement
+      if (promoCode.minOrder && subtotal < promoCode.minOrder) {
+        toast.error(`Đơn hàng tối thiểu ${promoCode.minOrder.toLocaleString('vi-VN')}₫ để áp dụng mã này`);
+        setIsApplyingPromo(false);
+        return;
+      }
+
+      setAppliedPromoCode(promoCode);
+      toast.success(`Áp dụng mã thành công! Giảm ${promoCode.discount}%`);
+      setIsApplyingPromo(false);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        toast.error('Có lỗi xảy ra. Vui lòng thử lại');
+      }
+      setIsApplyingPromo(false);
+    }
+  };
+
+  const handleRemovePromoCode = () => {
+    setAppliedPromoCode(null);
+    setPromoCodeInput('');
+    toast.info('Đã xóa mã khuyến mãi');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,23 +93,41 @@ const Cart = () => {
       return;
     }
 
-    // Simulate order submission
-    const order = {
-      ...formData,
-      items: items,
-      total: total,
-      timestamp: new Date().toISOString(),
-    };
-    
-    console.log('Order submitted:', order);
-    
-    toast.success('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
-    clearCart();
-    setFormData({ name: '', phone: '', address: '', note: '' });
-    
-    setTimeout(() => {
-      navigate('/');
-    }, 2000);
+    try {
+      // Validate form data
+      const validatedData = orderFormSchema.parse(formData);
+
+      // Simulate order submission
+      const order = {
+        ...validatedData,
+        items: items,
+        subtotal: subtotal,
+        discount: discount,
+        promoCode: appliedPromoCode?.code || null,
+        total: finalTotal,
+        timestamp: new Date().toISOString(),
+      };
+      
+      // Note: In production, this would be sent to backend API
+      // DO NOT log sensitive data in production
+      console.log('Order placed successfully');
+      
+      toast.success('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+      clearCart();
+      setFormData({ name: '', phone: '', address: '', note: '' });
+      setAppliedPromoCode(null);
+      setPromoCodeInput('');
+      
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        toast.error('Có lỗi xảy ra. Vui lòng kiểm tra lại thông tin');
+      }
+    }
   };
 
   if (items.length === 0) {
@@ -172,21 +256,79 @@ const Cart = () => {
                     onChange={(e) => setFormData({ ...formData, note: e.target.value })}
                     placeholder="Ghi chú thêm về đơn hàng (không bắt buộc)"
                     rows={2}
+                    maxLength={500}
                   />
                 </div>
 
-                <div className="border-t pt-4">
-                  <div className="flex justify-between mb-2">
+                {/* Promo Code Section */}
+                <div className="border rounded-lg p-4 bg-muted/30">
+                  <Label htmlFor="promoCode" className="flex items-center gap-2 mb-2">
+                    <Tag className="h-4 w-4" />
+                    Mã khuyến mãi
+                  </Label>
+                  
+                  {!appliedPromoCode ? (
+                    <div className="flex gap-2">
+                      <Input
+                        id="promoCode"
+                        value={promoCodeInput}
+                        onChange={(e) => setPromoCodeInput(e.target.value.toUpperCase())}
+                        placeholder="Nhập mã khuyến mãi"
+                        maxLength={20}
+                        disabled={isApplyingPromo}
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={handleApplyPromoCode}
+                        disabled={isApplyingPromo || !promoCodeInput.trim()}
+                      >
+                        Áp dụng
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between bg-primary/10 border border-primary/20 rounded-lg p-3">
+                      <div className="flex-1">
+                        <p className="font-mono font-bold text-primary">{appliedPromoCode.code}</p>
+                        <p className="text-xs text-muted-foreground">{appliedPromoCode.description}</p>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleRemovePromoCode}
+                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t pt-4 space-y-2">
+                  <div className="flex justify-between">
                     <span className="text-muted-foreground">Tạm tính:</span>
-                    <span className="font-semibold">{total.toLocaleString('vi-VN')}₫</span>
+                    <span className="font-semibold">{subtotal.toLocaleString('vi-VN')}₫</span>
                   </div>
-                  <div className="flex justify-between mb-4">
+                  
+                  {appliedPromoCode && discount > 0 && (
+                    <div className="flex justify-between text-primary">
+                      <span className="flex items-center gap-1">
+                        <Tag className="h-3 w-3" />
+                        Giảm giá ({appliedPromoCode.discount}%):
+                      </span>
+                      <span className="font-semibold">-{discount.toLocaleString('vi-VN')}₫</span>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-between">
                     <span className="text-muted-foreground">Phí vận chuyển:</span>
-                    <span className="font-semibold">Miễn phí</span>
+                    <span className="font-semibold text-secondary">Miễn phí</span>
                   </div>
+                  
                   <div className="flex justify-between text-xl font-bold border-t pt-4">
                     <span>Tổng cộng:</span>
-                    <span className="text-primary">{total.toLocaleString('vi-VN')}₫</span>
+                    <span className="text-primary">{finalTotal.toLocaleString('vi-VN')}₫</span>
                   </div>
                 </div>
 
