@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Minus, Plus, ShoppingCart, ArrowLeft } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Minus, Plus, ShoppingCart, ArrowLeft, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { getProductById, products } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
 import ProductCard from '@/components/ProductCard';
@@ -44,8 +45,20 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   const product = getProductById(id || '');
+
+  const galleryImages = product?.gallery || [product?.image || ''];
+
+  const handlePrevImage = () => {
+    setSelectedImage((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setSelectedImage((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+  };
 
   if (!product) {
     return (
@@ -86,20 +99,50 @@ const ProductDetail = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Product Image */}
+          {/* Product Image Gallery */}
           <div>
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-muted">
+            <div 
+              className="relative aspect-square rounded-2xl overflow-hidden bg-muted cursor-zoom-in group"
+              onClick={() => setIsGalleryOpen(true)}
+            >
               <img
-                src={product.image}
+                src={galleryImages[selectedImage]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {product.badge && (
                 <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground text-lg py-2 px-4">
                   {product.badge}
                 </Badge>
               )}
+              <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <ZoomIn className="h-4 w-4" />
+                Xem phóng to
+              </div>
             </div>
+            
+            {/* Thumbnail Gallery */}
+            {galleryImages.length > 1 && (
+              <div className="grid grid-cols-4 gap-3 mt-4">
+                {galleryImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                      selectedImage === index 
+                        ? 'border-primary scale-105 shadow-lg' 
+                        : 'border-transparent hover:border-muted-foreground/30'
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.name} - ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
@@ -226,6 +269,46 @@ const ProductDetail = () => {
           </div>
         )}
       </div>
+
+      {/* Gallery Modal */}
+      <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
+        <DialogContent className="max-w-5xl w-full p-0 bg-black/95">
+          <div className="relative">
+            <img
+              src={galleryImages[selectedImage]}
+              alt={product.name}
+              className="w-full h-[80vh] object-contain"
+            />
+            
+            {/* Navigation Buttons */}
+            {galleryImages.length > 1 && (
+              <>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white rounded-full h-12 w-12"
+                  onClick={handlePrevImage}
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white rounded-full h-12 w-12"
+                  onClick={handleNextImage}
+                >
+                  <ChevronRight className="h-8 w-8" />
+                </Button>
+                
+                {/* Image Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-sm">
+                  {selectedImage + 1} / {galleryImages.length}
+                </div>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
