@@ -44,6 +44,61 @@ const Reviews = () => {
 
   const reviews = [
     {
+      name: 'Chị Thanh Hà',
+      location: 'Biên Hòa, Đồng Nai',
+      rating: 5,
+      date: '28/11/2025',
+      comment:
+        'Đặt hàng qua fanpage rất tiện, chỉ cần nhắn tin là có người tư vấn ngay. Giao hàng đúng giờ hẹn, shipper rất dễ thương. Gà tươi ngon, đóng gói kỹ. Nhân viên tư vấn nhiệt tình, giải đáp mọi thắc mắc. Mua lần đầu nhưng ấn tượng lắm!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
+    },
+    {
+      name: 'Anh Quốc Bảo',
+      location: 'Long Khánh, Đồng Nai',
+      rating: 5,
+      date: '27/11/2025',
+      comment:
+        'Giao hàng nhanh không tưởng! Đặt sáng là chiều đã có gà tươi. Shipper gọi điện báo trước rất chu đáo. Nhân viên tư vấn qua điện thoại rất nhiệt tình, giúp mình chọn được con gà phù hợp. Đặt hàng online rất dễ dàng, thanh toán linh hoạt!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
+    },
+    {
+      name: 'Chị Minh Châu',
+      location: 'Long Thành, Đồng Nai',
+      rating: 5,
+      date: '26/11/2025',
+      comment:
+        'Thích nhất là dịch vụ tiện lợi, giao tận nhà không phải đi chợ. Nhân viên giao hàng rất lịch sự, nhiệt tình. Đóng gói sạch sẽ, gà tươi mới. Mình bận việc nên đặt hàng online là tiết kiệm thời gian nhất. Chắc chắn sẽ mua thường xuyên!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
+    },
+    {
+      name: 'Anh Hữu Thành',
+      location: 'Xuân Lộc, Đồng Nai',
+      rating: 5,
+      date: '26/11/2025',
+      comment:
+        'Shop phục vụ rất tốt! Nhân viên tư vấn tận tâm, giải thích rõ ràng về từng loại gà. Giao hàng nhanh chóng dù mình ở xa. Đặt hàng qua Zalo tiện lợi, có hình ảnh sản phẩm thật để chọn. Shipper giao đúng giờ, thái độ rất tốt!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
+    },
+    {
+      name: 'Chị Kim Ngân',
+      location: 'Long Khánh, Đồng Nai',
+      rating: 5,
+      date: '25/11/2025',
+      comment:
+        'Dịch vụ giao hàng tận nhà quá tiện, không cần ra chợ tốn thời gian. Nhân viên nhiệt tình hướng dẫn cách bảo quản và chế biến. Gà tươi ngon, đóng gói cẩn thận trong túi kín. Đặt hàng lúc 8h sáng, 11h đã có gà để nấu cơm. Rất hài lòng!',
+      productQuality: 5,
+      deliveryService: 5,
+      staffAttitude: 5,
+    },
+    {
       name: 'Chị Phương Thảo',
       location: 'Long Khánh, Đồng Nai',
       rating: 5,
