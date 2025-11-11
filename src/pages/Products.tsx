@@ -9,9 +9,6 @@ import { ProductGridSkeleton } from '@/components/LoadingSkeleton';
 import LazyImage from '@/components/LazyImage';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import chickenTexture from '@/assets/chicken-texture.jpg';
-import chickenParts from '@/assets/chicken-parts.jpg';
-import chickenWholeRaw from '@/assets/chicken-whole-raw.jpg';
-import chickenCooked from '@/assets/chicken-cooked.jpg';
 
 const productCategories = [
   {
@@ -19,27 +16,6 @@ const productCategories = [
     title: 'Thớ Thịt Chi Tiết',
     image: chickenTexture,
     description: 'Xem chi tiết thớ thịt gà sạch tươi ngon, sợi thịt mịn màng tự nhiên',
-    link: '/gallery',
-  },
-  {
-    id: 'parts',
-    title: 'Lóc Thịt Phần Đùi & Cánh',
-    image: chickenParts,
-    description: 'Thịt đùi và cánh gà tươi ngon, đã lóc xương sẵn cho bạn',
-    link: '/gallery',
-  },
-  {
-    id: 'whole-raw',
-    title: 'Gà Nguyên Con Tươi',
-    image: chickenWholeRaw,
-    description: 'Gà ta nguyên con tươi sống, da vàng óng tự nhiên',
-    link: '/gallery',
-  },
-  {
-    id: 'cooked',
-    title: 'Gà Sau Khi Chế Biến',
-    image: chickenCooked,
-    description: 'Gà chế biến sẵn, da giòn thơm ngon, tiện lợi cho bữa ăn',
     link: '/gallery',
   },
 ];
@@ -76,7 +52,7 @@ const Products = () => {
           <h2 className={`text-3xl font-bold text-center mb-8 transition-all duration-700 ${categoriesVisible ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
             Khám Phá <span className="text-primary">Chi Tiết Sản Phẩm</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 max-w-md mx-auto">
             {productCategories.map((category, idx) => (
               <Link key={category.id} to={category.link}>
                 <Card 
