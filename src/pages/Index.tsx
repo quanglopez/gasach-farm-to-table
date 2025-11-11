@@ -24,7 +24,7 @@ const Index = () => {
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white drop-shadow-lg">
               Gà Sạch Cho <span className="drop-shadow-lg text-slate-50">Bữa Cơm Gia Đình</span>{' '}
-              <span className="text-secondary drop-shadow-lg">Sum Vầy Và Hạnh Phúc!</span>
+              <span className="text-accent drop-shadow-lg">Sum Vầy Và Hạnh Phúc!</span>
             </h1>
             <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-white/90 leading-relaxed drop-shadow-md">
               Mang sự tiện lợi và sạch vào bữa cơm việt, cam kết giá cả tốt nhất thị trường, từ đó đảm bảo sức khoẻ giúp cho "mâm cơm nhà" sum vầy và hạnh phúc.
