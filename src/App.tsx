@@ -17,6 +17,7 @@ import Promotions from "./pages/Promotions";
 import Contact from "./pages/Contact";
 import Reviews from "./pages/Reviews";
 import Gallery from "./pages/Gallery";
+import OrderHistory from "./pages/OrderHistory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/reviews" element={<Reviews />} />
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/order-history" element={<OrderHistory />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

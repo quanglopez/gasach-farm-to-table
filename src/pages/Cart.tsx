@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { validatePromoCode, calculateDiscount, type PromoCode } from '@/data/promoCodes';
 import { z } from 'zod';
+import { supabase } from '@/integrations/supabase/client';
 
 // Form validation schema
 const orderFormSchema = z.object({
@@ -85,7 +86,7 @@ const Cart = () => {
     toast.info('Đã xóa mã khuyến mãi');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (items.length === 0) {
@@ -97,20 +98,41 @@ const Cart = () => {
       // Validate form data
       const validatedData = orderFormSchema.parse(formData);
 
-      // Simulate order submission
-      const order = {
-        ...validatedData,
-        items: items,
-        subtotal: subtotal,
-        discount: discount,
-        promoCode: appliedPromoCode?.code || null,
-        total: finalTotal,
-        timestamp: new Date().toISOString(),
-      };
-      
-      // Note: In production, this would be sent to backend API
-      // DO NOT log sensitive data in production
-      console.log('Order placed successfully');
+      // Create order in database
+      const { data: order, error: orderError } = await supabase
+        .from('orders')
+        .insert({
+          customer_name: validatedData.name,
+          customer_phone: validatedData.phone,
+          customer_address: validatedData.address,
+          customer_note: validatedData.note || null,
+          subtotal: subtotal,
+          discount: discount,
+          promo_code: appliedPromoCode?.code || null,
+          total: finalTotal,
+          status: 'pending'
+        })
+        .select()
+        .single();
+
+      if (orderError) throw orderError;
+
+      // Create order items
+      const orderItems = items.map(item => ({
+        order_id: order.id,
+        product_id: item.id,
+        product_name: item.name,
+        product_image: item.image,
+        product_weight: item.weight,
+        price: item.price,
+        quantity: item.quantity
+      }));
+
+      const { error: itemsError } = await supabase
+        .from('order_items')
+        .insert(orderItems);
+
+      if (itemsError) throw itemsError;
       
       toast.success('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
       clearCart();
@@ -125,7 +147,8 @@ const Cart = () => {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
       } else {
-        toast.error('Có lỗi xảy ra. Vui lòng kiểm tra lại thông tin');
+        console.error('Order submission error:', error);
+        toast.error('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại');
       }
     }
   };

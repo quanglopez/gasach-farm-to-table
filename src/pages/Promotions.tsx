@@ -7,20 +7,53 @@ import { Gift, Tag, Percent, Bell } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { z } from 'zod';
+import { supabase } from '@/integrations/supabase/client';
 
 const Promotions = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simulate saving to database
-    console.log('Promotion subscription:', { email, phone });
-    
-    toast.success('Đăng ký nhận khuyến mãi thành công! Chúng tôi sẽ thông báo cho bạn sớm nhất.');
-    setEmail('');
-    setPhone('');
+    try {
+      // Validate email and phone
+      const emailSchema = z.string().email({ message: "Email không hợp lệ" }).max(255);
+      const phoneSchema = z.string().min(10, { message: "Số điện thoại không hợp lệ" }).max(15);
+
+      const validatedEmail = emailSchema.parse(email);
+      const validatedPhone = phoneSchema.parse(phone);
+
+      // Insert into database
+      const { error } = await supabase
+        .from('promotion_subscribers')
+        .insert({
+          email: validatedEmail,
+          phone: validatedPhone
+        });
+
+      if (error) {
+        // Check if email already exists
+        if (error.code === '23505') {
+          toast.info('Email này đã đăng ký nhận khuyến mãi rồi!');
+        } else {
+          throw error;
+        }
+      } else {
+        toast.success('Đăng ký nhận khuyến mãi thành công! Chúng tôi sẽ thông báo cho bạn sớm nhất.');
+      }
+      
+      setEmail('');
+      setPhone('');
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        console.error('Subscription error:', error);
+        toast.error('Có lỗi xảy ra. Vui lòng thử lại');
+      }
+    }
   };
 
   const currentPromotions = [

@@ -15,6 +15,7 @@ const MobileMenu = () => {
     { path: '/reviews', label: 'Phản Hồi Khách Hàng' },
     { path: '/quality', label: 'Cam kết chất lượng' },
     { path: '/promotions', label: 'Khuyến mãi' },
+    { path: '/order-history', label: 'Lịch sử đơn hàng' },
     { path: '/contact', label: 'Liên hệ' },
   ];
 
