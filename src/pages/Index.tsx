@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Check, Leaf, Shield, Award, ArrowRight } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
-import heroChicken from '@/assets/hero-chicken.jpg';
+import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 
 const Index = () => {
