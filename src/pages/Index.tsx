@@ -18,6 +18,7 @@ import heroChicken from '@/assets/hero-background.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
 import farmChickens7 from '@/assets/farm-chickens-7.jpg';
+import farmBackground from '@/assets/farm-background.jpg';
 import farmChickens8 from '@/assets/farm-chickens-8.jpg';
 import farmChickens9 from '@/assets/farm-chickens-9.jpg';
 import tableMeal1 from '@/assets/table-meal-1.jpg';
@@ -90,7 +91,7 @@ const Index = () => {
             <Card className={`overflow-hidden card-hover group hover-lift transition-all duration-700 ${farmVisible ? 'animate-slide-in-left' : 'opacity-0'}`}>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <LazyImage
-                  src={farmChickens7}
+                  src={farmBackground}
                   alt="Gà trong trang trại"
                   className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
                 />
