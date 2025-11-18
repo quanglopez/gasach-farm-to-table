@@ -14,7 +14,7 @@ import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import LazyImage from '@/components/LazyImage';
-import heroChicken from '@/assets/ga-trong-ta-hero.jpg';
+import heroChicken from '@/assets/hero-background.jpg';
 import farmImage from '@/assets/farm-image.jpg';
 import farmChickens1 from '@/assets/farm-chickens-1.jpg';
 import farmChickens7 from '@/assets/farm-chickens-7.jpg';
