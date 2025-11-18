@@ -22,6 +22,15 @@ import farmBackground from '@/assets/farm-background.jpg';
 import farmChickens8 from '@/assets/farm-chickens-8.jpg';
 import farmChickens9 from '@/assets/farm-chickens-9.jpg';
 import tableMeal1 from '@/assets/table-meal-1.jpg';
+import review1 from '@/assets/review-1.jpg';
+import review2 from '@/assets/review-2.jpg';
+import review3 from '@/assets/review-3.jpg';
+import review4 from '@/assets/review-4.jpg';
+import review5 from '@/assets/review-5.jpg';
+import review6 from '@/assets/review-6.jpg';
+import review7 from '@/assets/review-7.jpg';
+import review8 from '@/assets/review-8.jpg';
+import review9 from '@/assets/review-9.jpg';
 
 const Index = () => {
   const featuredProducts = products;
@@ -351,20 +360,72 @@ const Index = () => {
             location: 'Long Khánh, Đồng Nai',
             rating: 5,
             date: '05/11/2025',
-            comment: 'Gia đình mình mua gà của Gasach được gần 1 năm rồi. Chất lượng luôn ổn định, thịt gà thơm ngon, da vàng óng. Đặc biệt là dịch vụ giao hàng rất nhanh, gà luôn tươi. Giá cả hợp lý, cả nhà rất hài lòng!'
+            comment: 'Gia đình mình mua gà của Gasach được gần 1 năm rồi. Chất lượng luôn ổn định, thịt gà thơm ngon, da vàng óng. Đặc biệt là dịch vụ giao hàng rất nhanh, gà luôn tươi. Giá cả hợp lý, cả nhà rất hài lòng!',
+            image: review1
           }, {
             name: 'Anh Thanh Tùng',
             location: 'Long Khánh, Đồng Nai',
             rating: 5,
             date: '08/11/2025',
-            comment: 'Mình đã thử nhiều nơi bán gà sạch nhưng chỉ có Gasach là ưng ý nhất. Gà nuôi tự nhiên nên thịt dai, ngọt và rất thơm. Nấu phở hay luộc đều ngon. Nhân viên tư vấn nhiệt tình, đóng gói cẩn thận!'
+            comment: 'Mình đã thử nhiều nơi bán gà sạch nhưng chỉ có Gasach là ưng ý nhất. Gà nuôi tự nhiên nên thịt dai, ngọt và rất thơm. Nấu phở hay luộc đều ngon. Nhân viên tư vấn nhiệt tình, đóng gói cẩn thận!',
+            image: review2
           }, {
             name: 'Chị Ngọc Hân',
             location: 'Biên Hòa, Đồng Nai',
             rating: 5,
             date: '12/11/2025',
-            comment: 'Lần đầu đặt mua nhưng rất hài lòng với chất lượng. Gà tươi, sạch sẽ, không mùi. Bữa cơm gia đình ngon hơn hẳn khi dùng gà của Gasach. Chắc chắn sẽ ủng hộ lâu dài!'
-          }].map((testimonial, index) => <Card key={index} className="p-6">
+            comment: 'Lần đầu đặt mua nhưng rất hài lòng với chất lượng. Gà tươi, sạch sẽ, không mùi. Bữa cơm gia đình ngon hơn hẳn khi dùng gà của Gasach. Chắc chắn sẽ ủng hộ lâu dài!',
+            image: review3
+          }, {
+            name: 'Chị Thu Hà',
+            location: 'Xuân Lộc, Đồng Nai',
+            rating: 5,
+            date: '15/11/2025',
+            comment: 'Gà luộc da vàng óng, thịt chắc và ngọt tự nhiên. Cả nhà đều khen ngon, đặc biệt các bé ăn rất thích. Sẽ giới thiệu cho bạn bè cùng dùng thử!',
+            image: review4
+          }, {
+            name: 'Anh Minh Tuấn',
+            location: 'Trảng Bom, Đồng Nai',
+            rating: 5,
+            date: '18/11/2025',
+            comment: 'Thịt gà săn chắc, thớ thịt đẹp, nấu món gì cũng ngon. Đặc biệt là khi làm gà hấp sả hay gà luộc, hương vị thơm ngon tự nhiên không cần nhiều gia vị.',
+            image: review5
+          }, {
+            name: 'Chị Lan Anh',
+            location: 'Nhơn Trạch, Đồng Nai',
+            rating: 5,
+            date: '20/11/2025',
+            comment: 'Mình mua gà về xé để chấm với nước muối chanh, thịt ngọt và dai vừa phải. Gia đình rất thích, đã đặt mua nhiều lần và luôn hài lòng với chất lượng!',
+            image: review6
+          }, {
+            name: 'Anh Quốc Bảo',
+            location: 'Long Thành, Đồng Nai',
+            rating: 5,
+            date: '22/11/2025',
+            comment: 'Gà luộc nguyên con để cúng rất đẹp, da vàng bóng. Sau khi cúng xong, xé ra ăn thì thịt vẫn ngon, không bị khô. Rất hài lòng với sản phẩm!',
+            image: review7
+          }, {
+            name: 'Chị Bích Ngọc',
+            location: 'Định Quán, Đồng Nai',
+            rating: 5,
+            date: '25/11/2025',
+            comment: 'Đùi gà to, thịt nhiều và rất ngon. Nướng hay luộc đều được, thịt thơm và không bị mùi hôi. Con nhỏ nhà mình rất thích ăn, giờ chỉ mua gà của Gasach thôi!',
+            image: review8
+          }, {
+            name: 'Anh Văn Hải',
+            location: 'Thống Nhất, Đồng Nai',
+            rating: 5,
+            date: '28/11/2025',
+            comment: 'Gà nấu cơm rất ngon, thịt dai ngọt và nước dùng trong. Vợ mình rất thích vì dễ chế biến và an tâm về chất lượng. Sẽ mua thường xuyên!',
+            image: review9
+          }].map((testimonial, index) => <Card key={index} className="p-6 overflow-hidden">
+                <div className="mb-4">
+                  <LazyImage 
+                    src={testimonial.image} 
+                    alt={`Đánh giá từ ${testimonial.name}`}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-accent text-xl">★</span>)}
