@@ -24,7 +24,7 @@ import farmChickens9 from '@/assets/farm-chickens-9.jpg';
 import tableMeal1 from '@/assets/table-meal-1.jpg';
 
 const Index = () => {
-  const featuredProducts = products.slice(0, 3);
+  const featuredProducts = products;
   const { ref: farmRef, isVisible: farmVisible } = useScrollAnimation();
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
   const { ref: productsRef, isVisible: productsVisible } = useScrollAnimation();
@@ -210,7 +210,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredProducts.map((product, idx) => (
               <div
                 key={product.id}
@@ -220,14 +220,6 @@ const Index = () => {
                 <ProductCard {...product} />
               </div>
             ))}
-          </div>
-          
-          <div className="text-center">
-            <Link to="/products">
-              <Button size="lg" variant="outline" className="text-lg">
-                Xem Tất Cả Sản Phẩm <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
