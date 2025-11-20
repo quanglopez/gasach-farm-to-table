@@ -1,12 +1,6 @@
 import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const ZaloIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 14.5L14 12L16.5 9.5L15.09 8.09L12 11.18L8.91 8.09L7.5 9.5L10 12L7.5 14.5L8.91 15.91L12 12.82L15.09 15.91L16.5 14.5Z" />
-    <text x="12" y="16" textAnchor="middle" fontSize="10" fontWeight="bold" fill="white">Z</text>
-  </svg>
-);
+import zaloIcon from '@/assets/zalo-icon.png';
 
 const FloatingContact = () => {
   return (
@@ -18,9 +12,9 @@ const FloatingContact = () => {
       >
         <Button
           size="lg"
-          className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-xl hover:shadow-2xl bg-[#0068FF] hover:bg-[#0052CC] text-white floating-pulse border-2 border-white/20"
+          className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-xl hover:shadow-2xl bg-[#0068FF] hover:bg-[#0052CC] floating-pulse border-2 border-white/20 p-0 overflow-hidden"
         >
-          <ZaloIcon className="h-5 w-5 md:h-6 md:w-6" />
+          <img src={zaloIcon} alt="Zalo" className="h-full w-full object-cover" />
         </Button>
       </a>
       
