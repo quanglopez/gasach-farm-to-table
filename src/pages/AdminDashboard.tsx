@@ -6,20 +6,33 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { AddAdminDialog } from '@/components/admin/AddAdminDialog';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Package, DollarSign, ShoppingCart, TrendingUp, LogOut, RefreshCw } from 'lucide-react';
+import { Package, DollarSign, ShoppingCart, TrendingUp, LogOut, RefreshCw, Eye, Settings } from 'lucide-react';
 
 interface Order {
   id: string;
   customer_name: string;
   customer_phone: string;
   customer_address: string;
+  customer_note: string | null;
+  subtotal: number;
+  discount: number;
   total: number;
   status: string;
   created_at: string;
   promo_code: string | null;
+}
+
+interface OrderItem {
+  id: string;
+  product_name: string;
+  product_image: string;
+  product_weight: string;
+  price: number;
+  quantity: number;
 }
 
 interface Stats {
@@ -41,6 +54,9 @@ const AdminDashboard = () => {
   });
   const [isLoadingOrders, setIsLoadingOrders] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+  const [isLoadingItems, setIsLoadingItems] = useState(false);
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -120,6 +136,29 @@ const AdminDashboard = () => {
     return <Badge className={cfg.className}>{cfg.label}</Badge>;
   };
 
+  const loadOrderItems = async (orderId: string) => {
+    try {
+      setIsLoadingItems(true);
+      const { data, error } = await supabase
+        .from('order_items')
+        .select('*')
+        .eq('order_id', orderId);
+
+      if (error) throw error;
+      setOrderItems(data || []);
+    } catch (error) {
+      console.error('Error loading order items:', error);
+      toast.error('Không thể tải chi tiết đơn hàng');
+    } finally {
+      setIsLoadingItems(false);
+    }
+  };
+
+  const handleViewDetails = async (order: Order) => {
+    setSelectedOrder(order);
+    await loadOrderItems(order.id);
+  };
+
   const handleSignOut = async () => {
     await signOut();
     navigate('/admin/login');
@@ -141,6 +180,10 @@ const AdminDashboard = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">Admin Dashboard</h1>
             <div className="flex gap-2">
+              <Button variant="outline" onClick={() => navigate('/admin/settings')}>
+                <Settings className="h-4 w-4 mr-2" />
+                Cài Đặt
+              </Button>
               <AddAdminDialog onAdminAdded={() => {}} />
               <Button variant="outline" onClick={handleSignOut}>
                 <LogOut className="h-4 w-4 mr-2" />
@@ -241,6 +284,7 @@ const AdminDashboard = () => {
                     <TableHead>Tổng tiền</TableHead>
                     <TableHead>Trạng thái</TableHead>
                     <TableHead>Ngày đặt</TableHead>
+                    <TableHead>Chi tiết</TableHead>
                     <TableHead>Cập nhật</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -259,6 +303,16 @@ const AdminDashboard = () => {
                       <TableCell>{getStatusBadge(order.status)}</TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {new Date(order.created_at).toLocaleDateString('vi-VN')}
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleViewDetails(order)}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          Xem
+                        </Button>
                       </TableCell>
                       <TableCell>
                         <Select
@@ -285,6 +339,107 @@ const AdminDashboard = () => {
           )}
         </Card>
       </div>
+
+      {/* Order Details Dialog */}
+      <Dialog open={!!selectedOrder} onOpenChange={() => setSelectedOrder(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Chi Tiết Đơn Hàng #{selectedOrder?.id.slice(0, 8)}</DialogTitle>
+          </DialogHeader>
+
+          {selectedOrder && (
+            <div className="space-y-6">
+              {/* Customer Info */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">Khách hàng</p>
+                  <p className="font-semibold">{selectedOrder.customer_name}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Số điện thoại</p>
+                  <p className="font-semibold">{selectedOrder.customer_phone}</p>
+                </div>
+                <div className="col-span-2">
+                  <p className="text-sm text-muted-foreground">Địa chỉ giao hàng</p>
+                  <p className="font-semibold">{selectedOrder.customer_address}</p>
+                </div>
+                {selectedOrder.customer_note && (
+                  <div className="col-span-2">
+                    <p className="text-sm text-muted-foreground">Ghi chú</p>
+                    <p className="font-semibold">{selectedOrder.customer_note}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Order Items */}
+              <div>
+                <h3 className="font-bold mb-3">Sản phẩm đã đặt</h3>
+                {isLoadingItems ? (
+                  <div className="text-center py-4">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {orderItems.map((item) => (
+                      <div key={item.id} className="flex gap-4 border rounded-lg p-3">
+                        <img
+                          src={item.product_image}
+                          alt={item.product_name}
+                          className="w-20 h-20 object-cover rounded"
+                        />
+                        <div className="flex-1">
+                          <p className="font-semibold">{item.product_name}</p>
+                          <p className="text-sm text-muted-foreground">{item.product_weight}</p>
+                          <p className="text-sm">Số lượng: {item.quantity}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-primary">
+                            {item.price.toLocaleString('vi-VN')}₫
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Order Summary */}
+              <div className="border-t pt-4 space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Tạm tính:</span>
+                  <span className="font-semibold">{selectedOrder.subtotal.toLocaleString('vi-VN')}₫</span>
+                </div>
+                {selectedOrder.discount > 0 && (
+                  <div className="flex justify-between text-primary">
+                    <span>
+                      Giảm giá {selectedOrder.promo_code && `(${selectedOrder.promo_code})`}:
+                    </span>
+                    <span className="font-semibold">-{selectedOrder.discount.toLocaleString('vi-VN')}₫</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-xl font-bold border-t pt-2">
+                  <span>Tổng cộng:</span>
+                  <span className="text-primary">{selectedOrder.total.toLocaleString('vi-VN')}₫</span>
+                </div>
+              </div>
+
+              {/* Status & Date */}
+              <div className="flex justify-between items-center border-t pt-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">Trạng thái</p>
+                  {getStatusBadge(selectedOrder.status)}
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-muted-foreground">Ngày đặt</p>
+                  <p className="font-semibold">
+                    {new Date(selectedOrder.created_at).toLocaleString('vi-VN')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

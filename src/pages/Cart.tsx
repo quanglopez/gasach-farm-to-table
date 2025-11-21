@@ -133,6 +133,48 @@ const Cart = () => {
         .insert(orderItems);
 
       if (itemsError) throw itemsError;
+
+      // Send to Zapier webhook for Google Sheets integration
+      try {
+        const { data: webhookData } = await supabase
+          .from('admin_settings')
+          .select('value')
+          .eq('key', 'zapier_webhook_url')
+          .maybeSingle();
+
+        if (webhookData?.value) {
+          // Send order data to Zapier webhook
+          fetch(webhookData.value, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            mode: 'no-cors',
+            body: JSON.stringify({
+              order_id: order.id,
+              customer_name: order.customer_name,
+              customer_phone: order.customer_phone,
+              customer_address: order.customer_address,
+              customer_note: order.customer_note,
+              subtotal: order.subtotal,
+              discount: order.discount,
+              promo_code: order.promo_code,
+              total: order.total,
+              status: order.status,
+              created_at: order.created_at,
+              items: orderItems.map(item => ({
+                product_name: item.product_name,
+                product_weight: item.product_weight,
+                price: item.price,
+                quantity: item.quantity,
+              })),
+            }),
+          }).catch(err => console.error('Webhook error:', err));
+        }
+      } catch (webhookError) {
+        console.error('Error sending to webhook:', webhookError);
+        // Don't show error to user as order was created successfully
+      }
       
       toast.success('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
       clearCart();
