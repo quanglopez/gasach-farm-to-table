@@ -13,6 +13,7 @@ const Header = () => {
   const menuItems = [
     { path: '/', label: 'Trang chủ' },
     { path: '/products', label: 'Sản phẩm' },
+    { path: '/sku-standards', label: 'Chuẩn SKU' },
     { path: '/gallery', label: 'Thư viện ảnh' },
     { path: '/about', label: 'Về chúng tôi' },
     { path: '/reviews', label: 'Phản Hồi Khách Hàng' },

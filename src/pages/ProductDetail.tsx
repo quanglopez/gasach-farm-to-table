@@ -5,6 +5,12 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Minus, Plus, ShoppingCart, ArrowLeft, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { getProductById, products } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
 import ProductCard from '@/components/ProductCard';
@@ -86,6 +92,32 @@ const ProductDetail = () => {
     navigate('/cart');
   };
 
+  const getBadgeStyle = (badge: string) => {
+    if (badge.includes('Basic')) {
+      return 'bg-blue-500/90 text-white border-blue-600 hover:bg-blue-600';
+    }
+    if (badge.includes('Standard')) {
+      return 'bg-amber-500/90 text-white border-amber-600 hover:bg-amber-600';
+    }
+    if (badge.includes('Premium')) {
+      return 'bg-emerald-500/90 text-white border-emerald-600 hover:bg-emerald-600';
+    }
+    return 'bg-accent text-accent-foreground';
+  };
+
+  const getBadgeTooltip = (badge: string) => {
+    if (badge.includes('Basic')) {
+      return 'Gà thịt độ dai thấp, thịt thơm nhẹ, vàng nhẹ. Phù hợp nướng, chiên, kho';
+    }
+    if (badge.includes('Standard')) {
+      return 'Gà thịt độ dai vừa, thơm, ít mỡ, vàng óng. Phù hợp lẩu, kho, luộc';
+    }
+    if (badge.includes('Premium')) {
+      return 'Gà ta ngon - độ dai ngon, thơm, da giòn, vàng óng/đỏ. Phù hợp luộc, hấp, lẩu';
+    }
+    return badge;
+  };
+
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
@@ -111,9 +143,18 @@ const ProductDetail = () => {
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {product.badge && (
-                <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground text-lg py-2 px-4">
-                  {product.badge}
-                </Badge>
+                <TooltipProvider>
+                  <Tooltip delayDuration={200}>
+                    <TooltipTrigger asChild>
+                      <Badge className={`absolute top-4 right-4 text-lg py-2 px-4 shadow-lg border-2 cursor-help transition-all ${getBadgeStyle(product.badge)}`}>
+                        {product.badge}
+                      </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>{getBadgeTooltip(product.badge)}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
               <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ZoomIn className="h-4 w-4" />

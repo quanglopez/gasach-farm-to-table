@@ -11,6 +11,7 @@ import FloatingContact from "@/components/FloatingContact";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import SkuStandards from "./pages/SkuStandards";
 import Cart from "./pages/Cart";
 import About from "./pages/About";
 import Quality from "./pages/Quality";
@@ -51,6 +52,7 @@ const App = () => (
                       <Route path="/" element={<Index />} />
                       <Route path="/products" element={<Products />} />
                       <Route path="/products/:id" element={<ProductDetail />} />
+                      <Route path="/sku-standards" element={<SkuStandards />} />
                       <Route path="/cart" element={<Cart />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/quality" element={<Quality />} />
