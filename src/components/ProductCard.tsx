@@ -5,6 +5,12 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
 import LazyImage from '@/components/LazyImage';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface ProductCardProps {
   id: string;
@@ -23,6 +29,32 @@ const ProductCard = ({ id, name, price, weight, image, badge }: ProductCardProps
     addToCart({ id, name, price, image, weight });
   };
 
+  const getBadgeStyle = (badge: string) => {
+    if (badge.includes('Basic')) {
+      return 'bg-blue-500/90 text-white border-blue-600 hover:bg-blue-600';
+    }
+    if (badge.includes('Standard')) {
+      return 'bg-amber-500/90 text-white border-amber-600 hover:bg-amber-600';
+    }
+    if (badge.includes('Premium')) {
+      return 'bg-emerald-500/90 text-white border-emerald-600 hover:bg-emerald-600';
+    }
+    return 'bg-accent text-accent-foreground';
+  };
+
+  const getBadgeTooltip = (badge: string) => {
+    if (badge.includes('Basic')) {
+      return 'Gà thịt độ dai thấp, thịt thơm nhẹ, vàng nhẹ. Phù hợp nướng, chiên, kho';
+    }
+    if (badge.includes('Standard')) {
+      return 'Gà thịt độ dai vừa, thơm, ít mỡ, vàng óng. Phù hợp lẩu, kho, luộc';
+    }
+    if (badge.includes('Premium')) {
+      return 'Gà ta ngon - độ dai ngon, thơm, da giòn, vàng óng/đỏ. Phù hợp luộc, hấp, lẩu';
+    }
+    return badge;
+  };
+
   return (
     <Link to={`/products/${id}`}>
       <Card className="overflow-hidden card-hover cursor-pointer group border-2 hover:border-primary/20 hover-lift">
@@ -35,9 +67,18 @@ const ProductCard = ({ id, name, price, weight, image, badge }: ProductCardProps
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           {badge && (
-            <Badge className="absolute top-3 right-3 bg-accent text-accent-foreground shadow-lg backdrop-blur-sm">
-              {badge}
-            </Badge>
+            <TooltipProvider>
+              <Tooltip delayDuration={200}>
+                <TooltipTrigger asChild>
+                  <Badge className={`absolute top-3 right-3 shadow-lg backdrop-blur-sm border-2 cursor-help transition-all ${getBadgeStyle(badge)}`}>
+                    {badge}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p className="text-sm">{getBadgeTooltip(badge)}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </div>
         
