@@ -35,6 +35,8 @@ const Cart = () => {
   const [promoCodeInput, setPromoCodeInput] = useState('');
   const [appliedPromoCode, setAppliedPromoCode] = useState<PromoCode | null>(null);
   const [isApplyingPromo, setIsApplyingPromo] = useState(false);
+  const [honeypot, setHoneypot] = useState(''); // Anti-bot field
+  const [trackingToken, setTrackingToken] = useState<string | null>(null);
 
   const subtotal = total;
   const discount = calculateDiscount(subtotal, appliedPromoCode);
@@ -94,9 +96,37 @@ const Cart = () => {
       return;
     }
 
+    // Bot detection - if honeypot is filled, it's likely a bot
+    if (honeypot) {
+      console.log('Bot detected via honeypot');
+      // Log to honeypot_logs table
+      try {
+        await supabase.from('honeypot_logs').insert({
+          ip_address: 'unknown',
+          user_agent: navigator.userAgent,
+          honeypot_value: honeypot
+        });
+      } catch (err) {
+        console.error('Error logging honeypot:', err);
+      }
+      toast.error('Có lỗi xảy ra. Vui lòng thử lại sau.');
+      return;
+    }
+
     try {
       // Validate form data
       const validatedData = orderFormSchema.parse(formData);
+
+      // Log request for rate limiting tracking
+      try {
+        await supabase.from('request_logs').insert({
+          ip_address: 'unknown', // In production, get real IP from edge function
+          endpoint: 'create_order',
+          user_agent: navigator.userAgent
+        });
+      } catch (err) {
+        console.error('Error logging request:', err);
+      }
 
       // Create order in database
       const { data: order, error: orderError } = await supabase
@@ -176,15 +206,14 @@ const Cart = () => {
         // Don't show error to user as order was created successfully
       }
       
-      toast.success('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+      // Save tracking token to show to user
+      setTrackingToken(order.tracking_token);
+      
+      toast.success('Đặt hàng thành công! Vui lòng lưu lại mã tra cứu đơn hàng.');
       clearCart();
       setFormData({ name: '', phone: '', address: '', note: '' });
       setAppliedPromoCode(null);
       setPromoCodeInput('');
-      
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
@@ -194,6 +223,55 @@ const Cart = () => {
       }
     }
   };
+
+  // Show success screen with tracking token
+  if (trackingToken) {
+    return (
+      <div className="min-h-screen flex items-center justify-center py-12">
+        <Card className="max-w-2xl w-full p-8 md:p-12 text-center">
+          <div className="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/10">
+            <ShoppingBag className="h-10 w-10 text-green-500" />
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Đặt Hàng Thành Công!</h1>
+          <p className="text-muted-foreground mb-8">
+            Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+          </p>
+
+          <div className="bg-primary/10 border-2 border-primary rounded-lg p-6 mb-8">
+            <p className="text-sm text-muted-foreground mb-2">Mã tra cứu đơn hàng của bạn:</p>
+            <div className="flex items-center justify-center gap-2">
+              <code className="text-3xl font-mono font-bold text-primary">{trackingToken}</code>
+            </div>
+            <p className="text-xs text-muted-foreground mt-4">
+              Vui lòng lưu lại mã này để tra cứu đơn hàng
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <Button 
+              onClick={() => navigate('/order-history')} 
+              size="lg" 
+              className="w-full"
+            >
+              Tra Cứu Đơn Hàng
+            </Button>
+            <Button 
+              onClick={() => {
+                setTrackingToken(null);
+                navigate('/products');
+              }} 
+              variant="outline"
+              size="lg" 
+              className="w-full"
+            >
+              Tiếp Tục Mua Sắm
+            </Button>
+          </div>
+        </Card>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -324,6 +402,18 @@ const Cart = () => {
                     maxLength={500}
                   />
                 </div>
+
+                {/* Honeypot field - hidden from users, only bots will fill it */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
 
                 {/* Promo Code Section */}
                 <div className="border rounded-lg p-4 bg-muted/30">
