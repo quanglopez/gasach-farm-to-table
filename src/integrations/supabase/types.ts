@@ -38,6 +38,30 @@ export type Database = {
         }
         Relationships: []
       }
+      honeypot_logs: {
+        Row: {
+          created_at: string | null
+          honeypot_value: string | null
+          id: string
+          ip_address: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          honeypot_value?: string | null
+          id?: string
+          ip_address: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          honeypot_value?: string | null
+          id?: string
+          ip_address?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           created_at: string | null
@@ -95,6 +119,7 @@ export type Database = {
           status: string | null
           subtotal: number
           total: number
+          tracking_token: string | null
           updated_at: string | null
         }
         Insert: {
@@ -109,6 +134,7 @@ export type Database = {
           status?: string | null
           subtotal: number
           total: number
+          tracking_token?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -123,6 +149,7 @@ export type Database = {
           status?: string | null
           subtotal?: number
           total?: number
+          tracking_token?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -145,6 +172,30 @@ export type Database = {
           id?: string
           phone?: string
           subscribed_at?: string | null
+        }
+        Relationships: []
+      }
+      request_logs: {
+        Row: {
+          created_at: string | null
+          endpoint: string
+          id: string
+          ip_address: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          endpoint: string
+          id?: string
+          ip_address: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          endpoint?: string
+          id?: string
+          ip_address?: string
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -175,6 +226,16 @@ export type Database = {
     }
     Functions: {
       add_admin_role: { Args: { target_user_id: string }; Returns: undefined }
+      check_rate_limit: {
+        Args: {
+          _endpoint: string
+          _ip_address: string
+          _max_requests?: number
+          _time_window_minutes?: number
+        }
+        Returns: boolean
+      }
+      generate_tracking_token: { Args: never; Returns: string }
       get_user_id_by_email: { Args: { user_email: string }; Returns: string }
       has_role: {
         Args: {
