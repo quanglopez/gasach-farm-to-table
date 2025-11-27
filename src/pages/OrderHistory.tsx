@@ -22,7 +22,6 @@ interface Order {
   total: number;
   status: string;
   created_at: string;
-  tracking_token: string;
 }
 
 interface OrderItem {
@@ -35,11 +34,9 @@ interface OrderItem {
 }
 
 const phoneSchema = z.string().trim().min(10, { message: "Số điện thoại không hợp lệ" }).max(15);
-const trackingTokenSchema = z.string().trim().length(12, { message: "Mã tra cứu không hợp lệ" });
 
 const OrderHistory = () => {
-  const [searchInput, setSearchInput] = useState('');
-  const [searchType, setSearchType] = useState<'phone' | 'tracking'>('tracking');
+  const [phone, setPhone] = useState('');
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
@@ -51,19 +48,14 @@ const OrderHistory = () => {
     e.preventDefault();
     
     try {
+      const validatedPhone = phoneSchema.parse(phone);
       setIsLoading(true);
 
-      let query = supabase.from('orders').select('*');
-
-      if (searchType === 'tracking') {
-        const validatedToken = trackingTokenSchema.parse(searchInput.toUpperCase());
-        query = query.eq('tracking_token', validatedToken);
-      } else {
-        const validatedPhone = phoneSchema.parse(searchInput);
-        query = query.eq('customer_phone', validatedPhone);
-      }
-
-      const { data, error } = await query.order('created_at', { ascending: false });
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .eq('customer_phone', validatedPhone)
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
 
@@ -71,10 +63,7 @@ const OrderHistory = () => {
       setIsSearched(true);
       
       if (!data || data.length === 0) {
-        toast.info(searchType === 'tracking' 
-          ? 'Không tìm thấy đơn hàng với mã này' 
-          : 'Không tìm thấy đơn hàng nào với số điện thoại này'
-        );
+        toast.info('Không tìm thấy đơn hàng nào với số điện thoại này');
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -139,40 +128,19 @@ const OrderHistory = () => {
         {/* Search Form */}
         <Card className="p-6 md:p-8 max-w-md mx-auto mb-12">
           <form onSubmit={handleSearch} className="space-y-4">
-            <div className="flex gap-2 mb-4">
-              <Button
-                type="button"
-                variant={searchType === 'tracking' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSearchType('tracking')}
-                className="flex-1"
-              >
-                Mã tra cứu
-              </Button>
-              <Button
-                type="button"
-                variant={searchType === 'phone' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSearchType('phone')}
-                className="flex-1"
-              >
-                Số điện thoại
-              </Button>
-            </div>
-
             <div>
-              <Label htmlFor="search" className="flex items-center gap-2 mb-2">
+              <Label htmlFor="phone" className="flex items-center gap-2 mb-2">
                 <Search className="h-4 w-4" />
-                {searchType === 'tracking' ? 'Mã tra cứu đơn hàng' : 'Số điện thoại'}
+                Số điện thoại
               </Label>
               <Input
-                id="search"
-                type="text"
+                id="phone"
+                type="tel"
                 required
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value.toUpperCase())}
-                placeholder={searchType === 'tracking' ? 'VD: ABC123DEF456' : '0123456789'}
-                maxLength={searchType === 'tracking' ? 12 : 15}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="0123456789"
+                maxLength={15}
                 disabled={isLoading}
               />
             </div>
@@ -213,10 +181,7 @@ const OrderHistory = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-3">
                             <Package className="h-5 w-5 text-primary" />
-                            <div>
-                              <h3 className="font-bold text-lg">Đơn hàng #{order.id.slice(0, 8)}</h3>
-                              <p className="text-xs text-muted-foreground font-mono">Mã: {order.tracking_token}</p>
-                            </div>
+                            <h3 className="font-bold text-lg">Đơn hàng #{order.id.slice(0, 8)}</h3>
                             {getStatusBadge(order.status)}
                           </div>
                           
