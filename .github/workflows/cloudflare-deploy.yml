@@ -1,0 +1,33 @@
+name: Deploy to Cloudflare Pages
+
+# Bridges GitHub -> Cloudflare Pages auto-deployment.
+#
+# Why this exists: the "Cloudflare Workers and Pages" GitHub App is installed on
+# this account but has NOT been granted access to this repository, so Cloudflare
+# never receives push events and does not start builds on its own. This workflow
+# calls the Cloudflare Pages deploy hook for the branch that was pushed, which
+# produces the same result: push -> Cloudflare build -> deploy.
+#
+# Once the Cloudflare GitHub App is granted access to this repository, Cloudflare
+# builds on push natively and this workflow can be deleted (see README).
+
+on:
+  push:
+    branches:
+      - main
+      - cloudflare-migration
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages build (main)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK_MAIN }}"
+
+      - name: Trigger Cloudflare Pages build (preview branch)
+        if: github.ref != 'refs/heads/main'
+        run: |
+          curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK_PREVIEW }}"
